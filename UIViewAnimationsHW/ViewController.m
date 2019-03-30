@@ -37,14 +37,12 @@
     self.someView.layer.masksToBounds = YES;
     self.someView.layer.cornerRadius = self.someView.frame.size.width / 2;
     
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(performTimerAnimation) userInfo:nil repeats:YES];
-
-    // Do any additional setup after loading the view, typically from a nib.
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.001 target:self selector:@selector(performTimerAnimation) userInfo:nil repeats:YES];
 }
 
 - (void) performTimerAnimation
 {
-    CGFloat dt = 2.f;
+    CGFloat dt = 0.2;
     CGFloat nextX = self.someView.center.x;
     CGFloat nextY = self.someView.center.y + self.v * dt;
     
@@ -52,7 +50,7 @@
     {
         self.v = -self.v;
     }
-    else if (nextY < 0)
+    if (nextY < 0)
     {
         self.v = -self.v;
     }
