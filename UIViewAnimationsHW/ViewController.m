@@ -8,15 +8,23 @@
 
 #import "ViewController.h"
 
+const CGFloat ballDiameter = 50.f;
+const CGFloat ballInitX = 100.f;
+const CGFloat ballInitY = 120.f;
+const CGFloat ballInitVelocityX = 0.1;
+const CGFloat ballInitVelocityY = 0.17;
+const double timeInterval = 0.0002;
+
 @interface ViewController ()
 
 @property (nonatomic, strong) NSTimer *timer;
-@property (nonatomic, strong) UIView *someView;
+@property (nonatomic, strong) UIView *ballView;
 
 @property (nonatomic, assign) CGFloat screenWidth;
 @property (nonatomic, assign) CGFloat screenHeight;
 
-@property (nonatomic, assign) CGFloat v;
+@property (nonatomic, assign) CGFloat ballVelocityX;
+@property (nonatomic, assign) CGFloat ballVelocityY;
 
 @end
 
@@ -28,34 +36,35 @@
     self.screenWidth = [UIScreen mainScreen].bounds.size.width;
     self.screenHeight = [UIScreen mainScreen].bounds.size.height;
     
-    self.v = 1.f;
+    self.ballVelocityX = ballInitVelocityX;
+    self.ballVelocityY = ballInitVelocityY;
     
-    self.someView = [[UIView alloc] initWithFrame:CGRectMake(100.f, 120.f, 100.f, 100.f)];
-    self.someView.backgroundColor = UIColor.blueColor;
-    [self.view addSubview:self.someView];
+    self.ballView = [[UIView alloc] initWithFrame:CGRectMake(ballInitX, ballInitY, ballDiameter, ballDiameter)];
+    self.ballView.backgroundColor = UIColor.blueColor;
+    [self.view addSubview:self.ballView];
     
-    self.someView.layer.masksToBounds = YES;
-    self.someView.layer.cornerRadius = self.someView.frame.size.width / 2;
+    self.ballView.layer.masksToBounds = YES;
+    self.ballView.layer.cornerRadius = self.ballView.frame.size.width / 2;
     
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.001 target:self selector:@selector(performTimerAnimation) userInfo:nil repeats:YES];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:timeInterval target:self selector:@selector(performTimerAnimation) userInfo:nil repeats:YES];
 }
 
 - (void) performTimerAnimation
 {
     CGFloat dt = 0.2;
-    CGFloat nextX = self.someView.center.x;
-    CGFloat nextY = self.someView.center.y + self.v * dt;
+    CGFloat nextX = self.ballView.center.x + self.ballVelocityX * dt;
+    CGFloat nextY = self.ballView.center.y + self.ballVelocityY * dt;
     
-    if (nextY > self.screenHeight)
+    if (nextY + ballDiameter / 2 > self.screenHeight || nextY - ballDiameter / 2 < 0)
     {
-        self.v = -self.v;
+        self.ballVelocityY = -self.ballVelocityY;
     }
-    if (nextY < 0)
+    if (nextX + ballDiameter / 2 > self.screenWidth || nextX - ballDiameter / 2 < 0)
     {
-        self.v = -self.v;
+        self.ballVelocityX = - self.ballVelocityX;
     }
     
-    self.someView.center = CGPointMake(nextX, nextY);
+    self.ballView.center = CGPointMake(nextX, nextY);
 }
 
 
