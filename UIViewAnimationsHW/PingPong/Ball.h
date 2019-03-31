@@ -17,13 +17,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, assign) CGFloat positionX;
 @property (nonatomic, assign) CGFloat positionY;
-
 @property (nonatomic, assign) CGFloat velocityX;
 @property (nonatomic, assign) CGFloat velocityY;
-
 @property (nonatomic, assign) CGFloat radius;
 
--(instancetype)initWith:(CGFloat) x y:(CGFloat) y radius:(CGFloat) radius;
+- (instancetype)initWith:(CGFloat) x y:(CGFloat) y u:(CGFloat) u v:(CGFloat) v
+                  color:(UIColor *) color radius:(CGFloat) radius;
+- (void)move;
 
 @end
 
