@@ -16,7 +16,7 @@
  2) Реализовать пример CATransition
  */
 
-const CGFloat ballDiameter = 50.f;
+const CGFloat ballRadius = 25.f;
 const CGFloat ballInitX = 100.f;
 const CGFloat ballInitY = 120.f;
 const CGFloat ballInitVelocityX = 0.1;
@@ -42,16 +42,16 @@ const CGFloat dt = 0.2;
     self.screenWidth = [UIScreen mainScreen].bounds.size.width;
     self.screenHeight = [UIScreen mainScreen].bounds.size.height;
     
-    Ball *ball = [Ball new];
-    ball.view = [[UIView alloc] initWithFrame:CGRectMake(ballInitX, ballInitY, ballDiameter, ballDiameter)];
-    ball.view.backgroundColor = UIColor.blueColor;
+    Ball *ball = [[Ball alloc] initWith:ballInitX y:ballInitY radius:ballRadius];
+    
+    ball.backgroundColor = UIColor.blueColor;
     ball.velocityX = ballInitVelocityX;
     ball.velocityY = ballInitVelocityY;
     
-    [self.view addSubview:ball.view];
+    [self.view addSubview:ball];
     
-    ball.view.layer.masksToBounds = YES;
-    ball.view.layer.cornerRadius = ball.view.frame.size.width / 2;
+    ball.layer.masksToBounds = YES;
+    ball.layer.cornerRadius = ball.frame.size.width / 2;
     
     self.ball = ball;
     
@@ -60,19 +60,19 @@ const CGFloat dt = 0.2;
 
 - (void)performTimerAnimation
 {
-    CGFloat nextX = self.ball.view.center.x + self.ball.velocityX * dt;
-    CGFloat nextY = self.ball.view.center.y + self.ball.velocityY * dt;
+    CGFloat nextX = self.ball.center.x + self.ball.velocityX * dt;
+    CGFloat nextY = self.ball.center.y + self.ball.velocityY * dt;
     
-    if (nextY + ballDiameter / 2 > self.screenHeight || nextY - ballDiameter / 2 < 0)
+    if (nextY + ballRadius > self.screenHeight || nextY - ballRadius < 0)
     {
         self.ball.velocityY = -self.ball.velocityY;
     }
-    if (nextX + ballDiameter / 2 > self.screenWidth || nextX - ballDiameter / 2 < 0)
+    if (nextX + ballRadius > self.screenWidth || nextX - ballRadius < 0)
     {
         self.ball.velocityX = - self.ball.velocityX;
     }
     
-    self.ball.view.center = CGPointMake(nextX, nextY);
+    self.ball.center = CGPointMake(nextX, nextY);
 }
 
 - (void)stopTimerAnimation

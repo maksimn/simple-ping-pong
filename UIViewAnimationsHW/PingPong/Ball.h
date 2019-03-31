@@ -13,7 +13,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 
-@interface Ball : NSObject
+@interface Ball : UIView
 
 @property (nonatomic, assign) CGFloat positionX;
 @property (nonatomic, assign) CGFloat positionY;
@@ -23,7 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, assign) CGFloat radius;
 
-@property (nonatomic, strong) UIView *view;
+-(instancetype)initWith:(CGFloat) x y:(CGFloat) y radius:(CGFloat) radius;
 
 @end
 
