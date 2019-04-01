@@ -7,13 +7,13 @@
 //
 
 
-#import "Ball.h"
+#import "AMXBall.h"
 
 
 const CGFloat dt = 0.2;
 
 
-@interface Ball ()
+@interface AMXBall ()
 
 @property (nonatomic, assign) CGFloat screenWidth;
 @property (nonatomic, assign) CGFloat screenHeight;
@@ -21,7 +21,7 @@ const CGFloat dt = 0.2;
 @end
 
 
-@implementation Ball
+@implementation AMXBall
 
 - (instancetype)initWith:(CGFloat) x y:(CGFloat) y u:(CGFloat) u v:(CGFloat) v
                    color:(UIColor *) color radius:(CGFloat) radius

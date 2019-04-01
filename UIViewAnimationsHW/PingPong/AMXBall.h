@@ -13,7 +13,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 
-@interface Ball : UIView
+@interface AMXBall : UIView
 
 @property (nonatomic, assign) CGFloat positionX;
 @property (nonatomic, assign) CGFloat positionY;

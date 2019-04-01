@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-#import "PingPong/Ball.h"
+#import "PingPong/AMXBall.h"
 
 /**
  Дз пока скидываю сюда: CoreAnimations, задачи:
@@ -25,7 +25,7 @@ const double timeInterval = 0.0002;
 
 @interface ViewController ()
 
-@property (nonatomic, strong) Ball *ball;
+@property (nonatomic, strong) AMXBall *ball;
 @property (nonatomic, strong) NSTimer *timer;
 
 @end
@@ -35,7 +35,7 @@ const double timeInterval = 0.0002;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.ball = [[Ball alloc] initWith:ballInitX y:ballInitY u:ballInitVelocityX v:ballInitVelocityY color:UIColor.blueColor radius:ballRadius];
+    self.ball = [[AMXBall alloc] initWith:ballInitX y:ballInitY u:ballInitVelocityX v:ballInitVelocityY color:UIColor.blueColor radius:ballRadius];
     
     [self.view addSubview:self.ball];
     
