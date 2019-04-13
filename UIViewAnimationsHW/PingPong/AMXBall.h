@@ -21,6 +21,17 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) CGFloat velocityY;
 @property (nonatomic, assign) CGFloat radius;
 
+/**
+ Метод создания объекта шарика для игры
+ 
+ @param x начальная координата по оси Х
+ @param y начальная координата по оси Y
+ @param u начальная скорость по оси Х
+ @param v начальная скорость по оси Y
+ @param color цвет шарика
+ @param radius радиус шарика
+ @return объект шарика для игры
+ */
 - (instancetype)initWith:(CGFloat) x y:(CGFloat) y u:(CGFloat) u v:(CGFloat) v
                   color:(UIColor *) color radius:(CGFloat) radius;
 - (void)move;

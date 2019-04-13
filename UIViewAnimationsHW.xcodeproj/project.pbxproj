@@ -12,6 +12,7 @@
 		0C2445A3224AA64000935367 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C2445A2224AA64000935367 /* Assets.xcassets */; };
 		0C2445A6224AA64000935367 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C2445A4224AA64000935367 /* LaunchScreen.storyboard */; };
 		0C2445A9224AA64000935367 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C2445A8224AA64000935367 /* main.m */; };
+		0C8BD8A3226222F3002A4D25 /* AMXGameTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C8BD8A2226222F3002A4D25 /* AMXGameTable.m */; };
 		0CE1C1FD2251259E007E84E0 /* AMXBall.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CE1C1FC2251259E007E84E0 /* AMXBall.m */; };
 /* End PBXBuildFile section */
 
@@ -25,6 +26,8 @@
 		0C2445A5224AA64000935367 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0C2445A7224AA64000935367 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0C2445A8224AA64000935367 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		0C8BD8A1226222F3002A4D25 /* AMXGameTable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMXGameTable.h; sourceTree = "<group>"; };
+		0C8BD8A2226222F3002A4D25 /* AMXGameTable.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMXGameTable.m; sourceTree = "<group>"; };
 		0CE1C1FB2251259E007E84E0 /* AMXBall.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMXBall.h; sourceTree = "<group>"; };
 		0CE1C1FC2251259E007E84E0 /* AMXBall.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMXBall.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -77,6 +80,8 @@
 			children = (
 				0CE1C1FB2251259E007E84E0 /* AMXBall.h */,
 				0CE1C1FC2251259E007E84E0 /* AMXBall.m */,
+				0C8BD8A1226222F3002A4D25 /* AMXGameTable.h */,
+				0C8BD8A2226222F3002A4D25 /* AMXGameTable.m */,
 			);
 			path = PingPong;
 			sourceTree = "<group>";
@@ -151,6 +156,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0CE1C1FD2251259E007E84E0 /* AMXBall.m in Sources */,
+				0C8BD8A3226222F3002A4D25 /* AMXGameTable.m in Sources */,
 				0C24459E224AA63F00935367 /* ViewController.m in Sources */,
 				0C2445A9224AA64000935367 /* main.m in Sources */,
 				0C24459B224AA63F00935367 /* AppDelegate.m in Sources */,
