@@ -20,14 +20,13 @@ const CGFloat ballInitVelocityX = 0.1;
 const CGFloat ballInitVelocityY = 0.17;
 const double timeInterval = 0.0002;
 
-const CGFloat gamerPaddleOffsetY = 30;
-
 
 @interface AMXGameTable ()
 
 @property (nonatomic, strong) UIView *view;
 @property (nonatomic, strong) AMXBall *ball;
 @property (nonatomic, strong) AMXPaddle *gamerPaddle;
+@property (nonatomic, strong) AMXPaddle *aiPaddle;
 @property (nonatomic, strong) NSTimer *timer;
 
 @property (nonatomic, assign) CGFloat screenWidth;
@@ -55,11 +54,6 @@ const CGFloat gamerPaddleOffsetY = 30;
     return self;
 }
 
-- (void)performTimerAnimation
-{
-    [self nextGameFrame];
-}
-
 - (void)stopTimerAnimation
 {
     [self.timer invalidate];
@@ -69,23 +63,23 @@ const CGFloat gamerPaddleOffsetY = 30;
 - (void)start
 {
     CGFloat gamerPaddleInitX = self.screenWidth / 2 - 40.0;
-    CGFloat gamerPaddleInitY = self.screenHeight - gamerPaddleOffsetY;
+    CGFloat gamerPaddleInitY = self.screenHeight - 30;
     self.gamerPaddle = [[AMXPaddle alloc] initWith:gamerPaddleInitX y:gamerPaddleInitY];
     [self addSubview:self.gamerPaddle];
+    
+    self.aiPaddle = [[AMXPaddle alloc] initWith:gamerPaddleInitX y:30];
+    [self addSubview:self.aiPaddle];
     
     self.ball = [[AMXBall alloc] initWith:ballInitX y:ballInitY u:ballInitVelocityX v:ballInitVelocityY color:UIColor.blueColor radius:ballRadius];
     
     [self addSubview:self.ball];
     
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:timeInterval target:self selector:@selector(performTimerAnimation) userInfo:nil repeats:YES];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:timeInterval target:self selector:@selector(nextGameFrame) userInfo:nil repeats:YES];
 }
 
 - (void)nextGameFrame
 {
-    CGFloat ballX = self.ball.center.x + self.ball.velocityX * dt;
-    CGFloat ballY = self.ball.center.y + self.ball.velocityY * dt;
-    
-    if ([AMXCollisionsDetector doGamerPaddleAndBallHaveCollision:self.ball gamerPaddle:self.gamerPaddle dt:dt])
+    if ([AMXCollisionsDetector doGamerPaddleAndBallHaveCollision:self.ball gamerPaddle:self.gamerPaddle dt:dt] || [AMXCollisionsDetector doHorizontalWallAndBallHaveCollision:self.ball dt:dt])
     {
         self.ball.velocityY = -self.ball.velocityY;
         return;
@@ -95,12 +89,9 @@ const CGFloat gamerPaddleOffsetY = 30;
         self.ball.velocityX = -self.ball.velocityX;
         return;
     }
-    if ([AMXCollisionsDetector doHorizontalWallAndBallHaveCollision:self.ball dt:dt])
-    {
-        self.ball.velocityY = - self.ball.velocityY;
-        return;
-    }
     
+    CGFloat ballX = self.ball.center.x + self.ball.velocityX * dt;
+    CGFloat ballY = self.ball.center.y + self.ball.velocityY * dt;
     self.ball.center = CGPointMake(ballX, ballY);
 }
 
@@ -108,13 +99,9 @@ const CGFloat gamerPaddleOffsetY = 30;
 {
     UITouch *touch = touches.anyObject;
     CGPoint point = [touch locationInView:self];
-    
     CGFloat touchX = point.x;
     
-    CGFloat paddleStartX = CGRectGetMinX(self.gamerPaddle.frame);
-    CGFloat paddleEndX = CGRectGetMaxX(self.gamerPaddle.frame);
-    
-    if (touchX >= paddleStartX && touchX <= paddleEndX)
+    if (touchX >= CGRectGetMinX(self.gamerPaddle.frame) && touchX <= CGRectGetMaxX(self.gamerPaddle.frame))
     {
         self.isTouchStartedInsidePaddleHorizontally = YES;
     }
