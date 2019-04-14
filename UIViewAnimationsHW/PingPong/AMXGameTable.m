@@ -31,6 +31,7 @@ const CGFloat gamerPaddleOffsetY = 30;
 
 @property (nonatomic, assign) CGFloat screenWidth;
 @property (nonatomic, assign) CGFloat screenHeight;
+@property (nonatomic, assign) BOOL isTouchStartedInsidePaddleHorizontally;
 
 @end
 
@@ -96,15 +97,44 @@ const CGFloat gamerPaddleOffsetY = 30;
     self.ball.center = CGPointMake(ballX, ballY);
 }
 
--(void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     UITouch *touch = touches.anyObject;
     CGPoint point = [touch locationInView:self];
     
-    point.x = point.x + self.frame.origin.x;
-    point.y = CGRectGetMidY(self.gamerPaddle.frame);
+    CGFloat touchX = point.x;
     
-    self.gamerPaddle.center = point;
+    CGFloat paddleStartX = CGRectGetMinX(self.gamerPaddle.frame);
+    CGFloat paddleEndX = CGRectGetMaxX(self.gamerPaddle.frame);
+    
+    if (touchX >= paddleStartX && touchX <= paddleEndX)
+    {
+        self.isTouchStartedInsidePaddleHorizontally = YES;
+    }
+}
+
+-(void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    if (self.isTouchStartedInsidePaddleHorizontally)
+    {
+        UITouch *touch = touches.anyObject;
+        CGPoint point = [touch locationInView:self];
+        
+        point.x = point.x + self.frame.origin.x;
+        point.y = CGRectGetMidY(self.gamerPaddle.frame);
+        
+        CGFloat paddleHalfWidth = CGRectGetWidth(self.gamerPaddle.frame) / 2;
+        
+        if (point.x > paddleHalfWidth && point.x < self.screenWidth - paddleHalfWidth)
+        {
+            self.gamerPaddle.center = point;
+        }
+    }
+}
+
+-(void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    self.isTouchStartedInsidePaddleHorizontally = NO;
 }
 
 @end
