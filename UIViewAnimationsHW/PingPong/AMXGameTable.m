@@ -14,8 +14,8 @@
 
 const CGFloat dt = 0.2;
 const CGFloat ballRadius = 25.f;
-const CGFloat ballInitX = 100.f;
-const CGFloat ballInitY = 120.f;
+const CGFloat ballInitX = 175.f;
+const CGFloat ballInitY = 250.f;
 const CGFloat ballInitVelocityX = 0.1;
 const CGFloat ballInitVelocityY = 0.17;
 const double timeInterval = 0.0002;
@@ -93,9 +93,15 @@ const CGFloat aiPaddleSpeed = 0.03;
     }
     
     if ([AMXCollisionsDetector doGamerPaddleAndBallHaveCollision:self.ball gamerPaddle:self.gamerPaddle dt:dt] ||
-        [AMXCollisionsDetector doHorizontalWallAndBallHaveCollision:self.ball dt:dt] ||
         [AMXCollisionsDetector doAiPaddleAndBallHaveCollision:self.ball aiPaddle:self.aiPaddle dt:dt])
     {
+        self.ball.velocityY = -self.ball.velocityY;
+        return;
+    }
+    if ([AMXCollisionsDetector doHorizontalWallAndBallHaveCollision:self.ball dt:dt])
+    {
+        self.ball.center = CGPointMake(ballInitX, ballInitY);
+        self.ball.velocityX = -self.ball.velocityX;
         self.ball.velocityY = -self.ball.velocityY;
         return;
     }
