@@ -19,6 +19,7 @@ const CGFloat ballInitY = 120.f;
 const CGFloat ballInitVelocityX = 0.1;
 const CGFloat ballInitVelocityY = 0.17;
 const double timeInterval = 0.0002;
+const CGFloat aiPaddleSpeed = 0.03;
 
 
 @interface AMXGameTable ()
@@ -81,6 +82,16 @@ const double timeInterval = 0.0002;
 
 - (void)nextGameFrame
 {
+    CGFloat ballCenterX = self.ball.center.x;
+    if (ballCenterX > self.aiPaddle.center.x)
+    {
+        self.aiPaddle.center = CGPointMake(self.aiPaddle.center.x + aiPaddleSpeed * dt, self.aiPaddle.center.y);
+    }
+    else
+    {
+        self.aiPaddle.center = CGPointMake(self.aiPaddle.center.x - aiPaddleSpeed * dt, self.aiPaddle.center.y);
+    }
+    
     if ([AMXCollisionsDetector doGamerPaddleAndBallHaveCollision:self.ball gamerPaddle:self.gamerPaddle dt:dt] ||
         [AMXCollisionsDetector doHorizontalWallAndBallHaveCollision:self.ball dt:dt] ||
         [AMXCollisionsDetector doAiPaddleAndBallHaveCollision:self.ball aiPaddle:self.aiPaddle dt:dt])

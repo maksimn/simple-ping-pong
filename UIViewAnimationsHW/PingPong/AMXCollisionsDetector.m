@@ -18,13 +18,8 @@
     CGFloat ballNextMaxY = ballMaxY + ball.velocityY * dt;
     CGFloat paddleMinY = CGRectGetMinY(gamerPaddle.frame);
     
-    if (ball.velocityY > 0 && [self isBallXWithinPaddle:ball paddle:gamerPaddle] && ballMaxY <= paddleMinY &&
-        ballNextMaxY >= paddleMinY)
-    {
-        return YES;
-    }
-    
-    return NO;
+    return  (ball.velocityY > 0 && [self isBallXWithinPaddle:ball paddle:gamerPaddle] && ballMaxY <= paddleMinY &&
+             ballNextMaxY >= paddleMinY) ? YES : NO;
 }
 
 + (BOOL)doAiPaddleAndBallHaveCollision:(AMXBall *)ball aiPaddle:(AMXPaddle *) aiPaddle dt:(CGFloat) dt
@@ -33,13 +28,8 @@
     CGFloat ballNextMinY = ballMinY + ball.velocityY * dt;
     CGFloat paddleMaxY = CGRectGetMaxY(aiPaddle.frame);
     
-    if (ball.velocityY < 0 && [self isBallXWithinPaddle:ball paddle:aiPaddle] && ballMinY >= paddleMaxY &&
-        ballNextMinY <= paddleMaxY)
-    {
-        return YES;
-    }
-    
-    return NO;
+    return (ball.velocityY < 0 && [self isBallXWithinPaddle:ball paddle:aiPaddle] && ballMinY >= paddleMaxY &&
+            ballNextMinY <= paddleMaxY) ? YES : NO;
 }
 
 + (BOOL)doVerticalWallAndBallHaveCollision:(AMXBall *)ball dt:(CGFloat) dt
@@ -48,12 +38,7 @@
     CGFloat ballRadius = ball.bounds.size.width / 2;
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
-    if (ballX + ballRadius > screenWidth || ballX - ballRadius < 0)
-    {
-        return YES;
-    }
-    
-    return NO;
+    return (ballX + ballRadius > screenWidth || ballX - ballRadius < 0) ? YES : NO;
 }
 
 + (BOOL)doHorizontalWallAndBallHaveCollision:(AMXBall *)ball dt:(CGFloat) dt
@@ -62,12 +47,7 @@
     CGFloat ballRadius = ball.bounds.size.width / 2;
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     
-    if (ballY + ballRadius > screenHeight || ballY - ballRadius < 0)
-    {
-        return YES;
-    }
-    
-    return NO;
+    return ballY + ballRadius > screenHeight || ballY - ballRadius < 0 ? YES : NO;
 }
 
 + (BOOL)isBallXWithinPaddle:(AMXBall *) ball paddle:(AMXPaddle *) paddle
