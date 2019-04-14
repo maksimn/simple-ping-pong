@@ -14,14 +14,12 @@
 
 + (BOOL)doGamerPaddleAndBallHaveCollision:(AMXBall *)ball gamerPaddle:(AMXPaddle *) gamerPaddle dt:(CGFloat) dt
 {
-    CGFloat ballCenterX = ball.center.x;
-    CGFloat paddleMinX = CGRectGetMinX(gamerPaddle.frame);
-    CGFloat paddleMaxX = CGRectGetMaxX(gamerPaddle.frame);
     CGFloat ballMaxY = CGRectGetMaxY(ball.frame);
     CGFloat ballNextMaxY = ballMaxY + ball.velocityY * dt;
     CGFloat paddleMinY = CGRectGetMinY(gamerPaddle.frame);
     
-    if (ball.velocityY > 0 && ballCenterX >= paddleMinX && ballCenterX <= paddleMaxX && ballMaxY <= paddleMinY && ballNextMaxY >= paddleMinY)
+    if (ball.velocityY > 0 && [self isBallXWithinPaddle:ball paddle:gamerPaddle] && ballMaxY <= paddleMinY &&
+        ballNextMaxY >= paddleMinY)
     {
         return YES;
     }
@@ -31,14 +29,12 @@
 
 + (BOOL)doAiPaddleAndBallHaveCollision:(AMXBall *)ball aiPaddle:(AMXPaddle *) aiPaddle dt:(CGFloat) dt
 {
-    CGFloat ballCenterX = ball.center.x;
-    CGFloat paddleMinX = CGRectGetMinX(aiPaddle.frame);
-    CGFloat paddleMaxX = CGRectGetMaxX(aiPaddle.frame);
     CGFloat ballMinY = CGRectGetMinY(ball.frame);
     CGFloat ballNextMinY = ballMinY + ball.velocityY * dt;
     CGFloat paddleMaxY = CGRectGetMaxY(aiPaddle.frame);
     
-    if (ball.velocityY < 0 && ballCenterX >= paddleMinX && ballCenterX <= paddleMaxX && ballMinY >= paddleMaxY && ballNextMinY <= paddleMaxY)
+    if (ball.velocityY < 0 && [self isBallXWithinPaddle:ball paddle:aiPaddle] && ballMinY >= paddleMaxY &&
+        ballNextMinY <= paddleMaxY)
     {
         return YES;
     }
@@ -72,6 +68,16 @@
     }
     
     return NO;
+}
+
++ (BOOL)isBallXWithinPaddle:(AMXBall *) ball paddle:(AMXPaddle *) paddle
+{
+    CGFloat ballCenterX = ball.center.x;
+    CGFloat paddleMinX = CGRectGetMinX(paddle.frame);
+    CGFloat paddleMaxX = CGRectGetMaxX(paddle.frame);
+    CGFloat delta = 7;
+    
+    return ballCenterX + delta >= paddleMinX && ballCenterX - delta <= paddleMaxX ? YES : NO;
 }
 
 @end

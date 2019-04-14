@@ -70,16 +70,19 @@ const double timeInterval = 0.0002;
     self.aiPaddle = [[AMXPaddle alloc] initWith:gamerPaddleInitX y:30];
     [self addSubview:self.aiPaddle];
     
-    self.ball = [[AMXBall alloc] initWith:ballInitX y:ballInitY u:ballInitVelocityX v:ballInitVelocityY color:UIColor.blueColor radius:ballRadius];
+    self.ball = [[AMXBall alloc] initWith:ballInitX y:ballInitY u:ballInitVelocityX v:ballInitVelocityY
+                                    color:UIColor.blueColor radius:ballRadius];
     
     [self addSubview:self.ball];
     
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:timeInterval target:self selector:@selector(nextGameFrame) userInfo:nil repeats:YES];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:timeInterval target:self selector:@selector(nextGameFrame)
+                                                userInfo:nil repeats:YES];
 }
 
 - (void)nextGameFrame
 {
-    if ([AMXCollisionsDetector doGamerPaddleAndBallHaveCollision:self.ball gamerPaddle:self.gamerPaddle dt:dt] || [AMXCollisionsDetector doHorizontalWallAndBallHaveCollision:self.ball dt:dt] ||
+    if ([AMXCollisionsDetector doGamerPaddleAndBallHaveCollision:self.ball gamerPaddle:self.gamerPaddle dt:dt] ||
+        [AMXCollisionsDetector doHorizontalWallAndBallHaveCollision:self.ball dt:dt] ||
         [AMXCollisionsDetector doAiPaddleAndBallHaveCollision:self.ball aiPaddle:self.aiPaddle dt:dt])
     {
         self.ball.velocityY = -self.ball.velocityY;
