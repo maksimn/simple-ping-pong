@@ -8,6 +8,8 @@
 
 #import "AMXGameTable.h"
 #import "AMXBall.h"
+#import "AMXPaddle.h"
+
 
 const CGFloat dt = 0.2;
 const CGFloat ballRadius = 25.f;
@@ -22,6 +24,7 @@ const double timeInterval = 0.0002;
 
 @property (nonatomic, strong) UIView *view;
 @property (nonatomic, strong) AMXBall *ball;
+@property (nonatomic, strong) AMXPaddle *gamerPaddle;
 @property (nonatomic, strong) NSTimer *timer;
 
 @property (nonatomic, assign) CGFloat screenWidth;
@@ -57,6 +60,11 @@ const double timeInterval = 0.0002;
 
 - (void)start
 {
+    CGFloat gamerPaddleInitX = self.screenWidth / 2 - 40.0;
+    CGFloat gamerPaddleInitY = self.screenHeight - 30;
+    self.gamerPaddle = [[AMXPaddle alloc] initWith:gamerPaddleInitX y:gamerPaddleInitY];
+    [self.view addSubview:self.gamerPaddle];
+    
     self.ball = [[AMXBall alloc] initWith:ballInitX y:ballInitY u:ballInitVelocityX v:ballInitVelocityY color:UIColor.blueColor radius:ballRadius];
     
     [self.view addSubview:self.ball];
@@ -81,7 +89,6 @@ const double timeInterval = 0.0002;
     
     self.ball.center = CGPointMake(ballX, ballY);
 }
-
 
 @end
 
