@@ -19,6 +19,8 @@ const CGFloat ballInitVelocityX = 0.1;
 const CGFloat ballInitVelocityY = 0.17;
 const double timeInterval = 0.0002;
 
+const CGFloat gamerPaddleOffsetY = 30;
+
 
 @interface AMXGameTable ()
 
@@ -37,11 +39,15 @@ const double timeInterval = 0.0002;
 
 - (instancetype)initWithView:(UIView *) view
 {
-    if (self = [super init])
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
+    
+    if (self = [super initWithFrame:CGRectMake(0, 0, screenWidth, screenHeight)])
     {
         self.view = view;
-        self.screenWidth = [UIScreen mainScreen].bounds.size.width;
-        self.screenHeight = [UIScreen mainScreen].bounds.size.height;
+        self.screenWidth = screenWidth;
+        self.screenHeight = screenHeight;
+        [self.view addSubview:self];
     }
     
     return self;
@@ -61,13 +67,13 @@ const double timeInterval = 0.0002;
 - (void)start
 {
     CGFloat gamerPaddleInitX = self.screenWidth / 2 - 40.0;
-    CGFloat gamerPaddleInitY = self.screenHeight - 30;
+    CGFloat gamerPaddleInitY = self.screenHeight - gamerPaddleOffsetY;
     self.gamerPaddle = [[AMXPaddle alloc] initWith:gamerPaddleInitX y:gamerPaddleInitY];
-    [self.view addSubview:self.gamerPaddle];
+    [self addSubview:self.gamerPaddle];
     
     self.ball = [[AMXBall alloc] initWith:ballInitX y:ballInitY u:ballInitVelocityX v:ballInitVelocityY color:UIColor.blueColor radius:ballRadius];
     
-    [self.view addSubview:self.ball];
+    [self addSubview:self.ball];
     
     self.timer = [NSTimer scheduledTimerWithTimeInterval:timeInterval target:self selector:@selector(performTimerAnimation) userInfo:nil repeats:YES];
 }
@@ -88,6 +94,17 @@ const double timeInterval = 0.0002;
     }
     
     self.ball.center = CGPointMake(ballX, ballY);
+}
+
+-(void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    UITouch *touch = touches.anyObject;
+    CGPoint point = [touch locationInView:self];
+    
+    point.x = point.x + self.frame.origin.x;
+    point.y = CGRectGetMidY(self.gamerPaddle.frame);
+    
+    self.gamerPaddle.center = point;
 }
 
 @end
