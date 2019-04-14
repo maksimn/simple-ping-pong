@@ -11,14 +11,6 @@
 #import "PingPong/AMXGameTable.h"
 
 
-/**
- Дз пока скидываю сюда: CoreAnimations, задачи:
- 1) Создать игру пинг-понг, с возможностью приостановить/возобновить игру,
- вывести очки и AI.
- 2) Реализовать пример CATransition
- */
-
-
 @implementation ViewController
 
 - (void)viewDidLoad {

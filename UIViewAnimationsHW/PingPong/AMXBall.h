@@ -34,7 +34,6 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (instancetype)initWith:(CGFloat) x y:(CGFloat) y u:(CGFloat) u v:(CGFloat) v
                   color:(UIColor *) color radius:(CGFloat) radius;
-- (void)move;
 
 @end
 
