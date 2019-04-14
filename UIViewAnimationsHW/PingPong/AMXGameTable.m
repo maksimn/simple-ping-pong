@@ -79,7 +79,8 @@ const double timeInterval = 0.0002;
 
 - (void)nextGameFrame
 {
-    if ([AMXCollisionsDetector doGamerPaddleAndBallHaveCollision:self.ball gamerPaddle:self.gamerPaddle dt:dt] || [AMXCollisionsDetector doHorizontalWallAndBallHaveCollision:self.ball dt:dt])
+    if ([AMXCollisionsDetector doGamerPaddleAndBallHaveCollision:self.ball gamerPaddle:self.gamerPaddle dt:dt] || [AMXCollisionsDetector doHorizontalWallAndBallHaveCollision:self.ball dt:dt] ||
+        [AMXCollisionsDetector doAiPaddleAndBallHaveCollision:self.ball aiPaddle:self.aiPaddle dt:dt])
     {
         self.ball.velocityY = -self.ball.velocityY;
         return;

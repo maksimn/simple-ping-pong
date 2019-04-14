@@ -29,6 +29,23 @@
     return NO;
 }
 
++ (BOOL)doAiPaddleAndBallHaveCollision:(AMXBall *)ball aiPaddle:(AMXPaddle *) aiPaddle dt:(CGFloat) dt
+{
+    CGFloat ballCenterX = ball.center.x;
+    CGFloat paddleMinX = CGRectGetMinX(aiPaddle.frame);
+    CGFloat paddleMaxX = CGRectGetMaxX(aiPaddle.frame);
+    CGFloat ballMinY = CGRectGetMinY(ball.frame);
+    CGFloat ballNextMinY = ballMinY + ball.velocityY * dt;
+    CGFloat paddleMaxY = CGRectGetMaxY(aiPaddle.frame);
+    
+    if (ball.velocityY < 0 && ballCenterX >= paddleMinX && ballCenterX <= paddleMaxX && ballMinY >= paddleMaxY && ballNextMinY <= paddleMaxY)
+    {
+        return YES;
+    }
+    
+    return NO;
+}
+
 + (BOOL)doVerticalWallAndBallHaveCollision:(AMXBall *)ball dt:(CGFloat) dt
 {
     CGFloat ballX = ball.center.x + ball.velocityX * dt;
