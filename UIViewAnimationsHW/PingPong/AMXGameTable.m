@@ -9,6 +9,7 @@
 #import "AMXGameTable.h"
 #import "AMXBall.h"
 #import "AMXPaddle.h"
+#import "AMXCollisionsDetector.h"
 
 
 const CGFloat dt = 0.2;
@@ -85,7 +86,9 @@ const CGFloat gamerPaddleOffsetY = 30;
     CGFloat ballY = self.ball.center.y + self.ball.velocityY * dt;
     CGFloat ballRadius = self.ball.bounds.size.width / 2;
     
-    if ([self doGamerPaddleAndBallHaveCollision])
+    AMXCollisionsDetector *collisionsDetector = [AMXCollisionsDetector new];
+    
+    if ([collisionsDetector doGamerPaddleAndBallHaveCollision:self.ball gamerPaddle:self.gamerPaddle dt:dt])
     {
         self.ball.velocityY = -self.ball.velocityY;
         return;
@@ -143,23 +146,6 @@ const CGFloat gamerPaddleOffsetY = 30;
 - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     self.isTouchStartedInsidePaddleHorizontally = NO;
-}
-
-- (BOOL)doGamerPaddleAndBallHaveCollision
-{
-    CGFloat ballCenterX = self.ball.center.x;
-    CGFloat paddleMinX = CGRectGetMinX(self.gamerPaddle.frame);
-    CGFloat paddleMaxX = CGRectGetMaxX(self.gamerPaddle.frame);
-    CGFloat ballMaxY = CGRectGetMaxY(self.ball.frame);
-    CGFloat ballNextMaxY = ballMaxY + self.ball.velocityY * dt;
-    CGFloat paddleMinY = CGRectGetMinY(self.gamerPaddle.frame);
-    
-    if (self.ball.velocityY > 0 && ballCenterX >= paddleMinX && ballCenterX <= paddleMaxX && ballMaxY <= paddleMinY && ballNextMaxY >= paddleMinY)
-    {
-        return YES;
-    }
-    
-    return NO;
 }
 
 @end
