@@ -85,13 +85,21 @@ const CGFloat gamerPaddleOffsetY = 30;
     CGFloat ballY = self.ball.center.y + self.ball.velocityY * dt;
     CGFloat ballRadius = self.ball.bounds.size.width / 2;
     
+    if ([self doGamerPaddleAndBallHaveCollision])
+    {
+        self.ball.velocityY = -self.ball.velocityY;
+        return;
+    }
+    
     if (ballY + ballRadius > self.screenHeight || ballY - ballRadius < 0)
     {
         self.ball.velocityY = -self.ball.velocityY;
+        return;
     }
     if (ballX + ballRadius > self.screenWidth || ballX - ballRadius < 0)
     {
         self.ball.velocityX = - self.ball.velocityX;
+        return;
     }
     
     self.ball.center = CGPointMake(ballX, ballY);
@@ -132,9 +140,26 @@ const CGFloat gamerPaddleOffsetY = 30;
     }
 }
 
--(void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     self.isTouchStartedInsidePaddleHorizontally = NO;
+}
+
+- (BOOL)doGamerPaddleAndBallHaveCollision
+{
+    CGFloat ballCenterX = self.ball.center.x;
+    CGFloat paddleMinX = CGRectGetMinX(self.gamerPaddle.frame);
+    CGFloat paddleMaxX = CGRectGetMaxX(self.gamerPaddle.frame);
+    CGFloat ballMaxY = CGRectGetMaxY(self.ball.frame);
+    CGFloat ballNextMaxY = ballMaxY + self.ball.velocityY * dt;
+    CGFloat paddleMinY = CGRectGetMinY(self.gamerPaddle.frame);
+    
+    if (self.ball.velocityY > 0 && ballCenterX >= paddleMinX && ballCenterX <= paddleMaxX && ballMaxY <= paddleMinY && ballNextMaxY >= paddleMinY)
+    {
+        return YES;
+    }
+    
+    return NO;
 }
 
 @end
