@@ -14,7 +14,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface AMXCollisionsDetector : NSObject
 
-- (BOOL)doGamerPaddleAndBallHaveCollision:(AMXBall *)ball gamerPaddle:(AMXPaddle *) gamerPaddle dt:(CGFloat) dt;
++ (BOOL)doGamerPaddleAndBallHaveCollision:(AMXBall *)ball gamerPaddle:(AMXPaddle *) gamerPaddle dt:(CGFloat) dt;
++ (BOOL)doVerticalWallAndBallHaveCollision:(AMXBall *)ball dt:(CGFloat) dt;
++ (BOOL)doHorizontalWallAndBallHaveCollision:(AMXBall *)ball dt:(CGFloat) dt;
 
 @end
 

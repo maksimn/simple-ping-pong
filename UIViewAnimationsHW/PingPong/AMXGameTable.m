@@ -84,24 +84,20 @@ const CGFloat gamerPaddleOffsetY = 30;
 {
     CGFloat ballX = self.ball.center.x + self.ball.velocityX * dt;
     CGFloat ballY = self.ball.center.y + self.ball.velocityY * dt;
-    CGFloat ballRadius = self.ball.bounds.size.width / 2;
     
-    AMXCollisionsDetector *collisionsDetector = [AMXCollisionsDetector new];
-    
-    if ([collisionsDetector doGamerPaddleAndBallHaveCollision:self.ball gamerPaddle:self.gamerPaddle dt:dt])
+    if ([AMXCollisionsDetector doGamerPaddleAndBallHaveCollision:self.ball gamerPaddle:self.gamerPaddle dt:dt])
     {
         self.ball.velocityY = -self.ball.velocityY;
         return;
     }
-    
-    if (ballY + ballRadius > self.screenHeight || ballY - ballRadius < 0)
+    if ([AMXCollisionsDetector doVerticalWallAndBallHaveCollision:self.ball dt:dt])
     {
-        self.ball.velocityY = -self.ball.velocityY;
+        self.ball.velocityX = -self.ball.velocityX;
         return;
     }
-    if (ballX + ballRadius > self.screenWidth || ballX - ballRadius < 0)
+    if ([AMXCollisionsDetector doHorizontalWallAndBallHaveCollision:self.ball dt:dt])
     {
-        self.ball.velocityX = - self.ball.velocityX;
+        self.ball.velocityY = - self.ball.velocityY;
         return;
     }
     
