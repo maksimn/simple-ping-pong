@@ -10,10 +10,7 @@
 #import "AMXBall.h"
 #import "AMXPaddle.h"
 #import "AMXCollisionsDetector.h"
-
-
-const CGFloat ballInitX_ = 175.f;
-const CGFloat ballInitY_ = 250.f;
+#import "AMXValues.h"
 
 
 @implementation AMXBall
@@ -45,7 +42,7 @@ const CGFloat ballInitY_ = 250.f;
     }
     if ([AMXCollisionsDetector doHorizontalWallAndBallHaveCollision:self dt:dt])
     {
-        self.center = CGPointMake(ballInitX_, ballInitY_);
+        self.center = CGPointMake(ballInitX, ballInitY);
         self.velocityX = -self.velocityX;
         self.velocityY = -self.velocityY;
         return;
