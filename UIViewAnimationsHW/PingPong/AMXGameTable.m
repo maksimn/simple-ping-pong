@@ -19,6 +19,7 @@
 @property (nonatomic, strong) AMXPaddle *gamerPaddle;
 @property (nonatomic, strong) AMXPaddle *aiPaddle;
 @property (nonatomic, strong) NSTimer *timer;
+@property (nonatomic, strong) UIButton *settingsButton;
 
 @property (nonatomic, assign) CGFloat screenWidth;
 @property (nonatomic, assign) CGFloat screenHeight;
@@ -46,6 +47,7 @@
 
 - (void)start
 {
+    [self prepareSettingsButton];
     [self preparePaddles];
     [self prepareBall];
     [self startTimer];
@@ -101,6 +103,21 @@
 {
     [self.timer invalidate];
     self.timer = nil;
+}
+
+- (void)prepareSettingsButton
+{
+    self.settingsButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    self.settingsButton.frame = CGRectMake(CGRectGetMidX(self.view.frame) - 20.0, CGRectGetMidY(self.view.frame) - 15.0, 40.0, 30.0);
+    self.settingsButton.backgroundColor = [UIColor cyanColor];
+    [self.settingsButton setTitle:@"||" forState:UIControlStateNormal];
+    [self.settingsButton addTarget:self action:@selector(showSettings) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview: self.settingsButton];
+}
+
+- (void)showSettings
+{
+    
 }
 
 @end
