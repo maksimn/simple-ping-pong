@@ -9,7 +9,6 @@
 #import "AMXGameTable.h"
 #import "AMXBall.h"
 #import "AMXPaddle.h"
-#import "AMXCollisionsDetector.h"
 
 
 const CGFloat dt = 0.2;
@@ -19,7 +18,6 @@ const CGFloat ballInitY = 250.f;
 const CGFloat ballInitVelocityX = 0.1;
 const CGFloat ballInitVelocityY = 0.17;
 const double timeInterval = 0.0002;
-const CGFloat aiPaddleSpeed = 0.03;
 
 
 @interface AMXGameTable ()
@@ -54,65 +52,17 @@ const CGFloat aiPaddleSpeed = 0.03;
     return self;
 }
 
-- (void)stopTimerAnimation
-{
-    [self.timer invalidate];
-    self.timer = nil;
-}
-
 - (void)start
 {
-    CGFloat gamerPaddleInitX = self.screenWidth / 2 - 40.0;
-    CGFloat gamerPaddleInitY = self.screenHeight - 30;
-    self.gamerPaddle = [[AMXPaddle alloc] initWith:gamerPaddleInitX y:gamerPaddleInitY];
-    [self addSubview:self.gamerPaddle];
-    
-    self.aiPaddle = [[AMXPaddle alloc] initWith:gamerPaddleInitX y:30];
-    [self addSubview:self.aiPaddle];
-    
-    self.ball = [[AMXBall alloc] initWith:ballInitX y:ballInitY u:ballInitVelocityX v:ballInitVelocityY
-                                    color:UIColor.blueColor radius:ballRadius];
-    
-    [self addSubview:self.ball];
-    
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:timeInterval target:self selector:@selector(nextGameFrame)
-                                                userInfo:nil repeats:YES];
+    [self preparePaddles];
+    [self prepareBall];
+    [self startTimer];
 }
 
 - (void)nextGameFrame
 {
-    CGFloat ballCenterX = self.ball.center.x;
-    if (ballCenterX > self.aiPaddle.center.x)
-    {
-        self.aiPaddle.center = CGPointMake(self.aiPaddle.center.x + aiPaddleSpeed * dt, self.aiPaddle.center.y);
-    }
-    else
-    {
-        self.aiPaddle.center = CGPointMake(self.aiPaddle.center.x - aiPaddleSpeed * dt, self.aiPaddle.center.y);
-    }
-    
-    if ([AMXCollisionsDetector doGamerPaddleAndBallHaveCollision:self.ball gamerPaddle:self.gamerPaddle dt:dt] ||
-        [AMXCollisionsDetector doAiPaddleAndBallHaveCollision:self.ball aiPaddle:self.aiPaddle dt:dt])
-    {
-        self.ball.velocityY = -self.ball.velocityY;
-        return;
-    }
-    if ([AMXCollisionsDetector doHorizontalWallAndBallHaveCollision:self.ball dt:dt])
-    {
-        self.ball.center = CGPointMake(ballInitX, ballInitY);
-        self.ball.velocityX = -self.ball.velocityX;
-        self.ball.velocityY = -self.ball.velocityY;
-        return;
-    }
-    if ([AMXCollisionsDetector doVerticalWallAndBallHaveCollision:self.ball dt:dt])
-    {
-        self.ball.velocityX = -self.ball.velocityX;
-        return;
-    }
-    
-    CGFloat ballX = self.ball.center.x + self.ball.velocityX * dt;
-    CGFloat ballY = self.ball.center.y + self.ball.velocityY * dt;
-    self.ball.center = CGPointMake(ballX, ballY);
+    [self.aiPaddle move:self.ball.center.x dt:dt];
+    [self.ball move:self.gamerPaddle aiPaddle:self.aiPaddle dt:dt];
 }
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
@@ -128,6 +78,37 @@ const CGFloat aiPaddleSpeed = 0.03;
 - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     [self.gamerPaddle touchesEnded];
+}
+
+- (void)preparePaddles
+{
+    CGFloat gamerPaddleInitX = self.screenWidth / 2 - 40.0;
+    CGFloat gamerPaddleInitY = self.screenHeight - 30;
+    
+    self.gamerPaddle = [[AMXPaddle alloc] initWith:gamerPaddleInitX y:gamerPaddleInitY];
+    [self addSubview:self.gamerPaddle];
+    
+    self.aiPaddle = [[AMXPaddle alloc] initWith:gamerPaddleInitX y:30];
+    [self addSubview:self.aiPaddle];
+}
+
+- (void)prepareBall
+{
+    self.ball = [[AMXBall alloc] initWith:ballInitX y:ballInitY u:ballInitVelocityX v:ballInitVelocityY
+                                    color:UIColor.blueColor radius:ballRadius];
+    [self addSubview:self.ball];
+}
+
+- (void)startTimer
+{
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:timeInterval target:self selector:@selector(nextGameFrame)
+                                                userInfo:nil repeats:YES];
+}
+
+- (void)stopTimerAnimation
+{
+    [self.timer invalidate];
+    self.timer = nil;
 }
 
 @end

@@ -12,6 +12,7 @@
 
 static const CGFloat paddleHeight = 15;
 static const CGFloat paddleWidth = 80;
+const CGFloat aiPaddleSpeed = 0.03;
 
 
 @interface AMXPaddle ()
@@ -70,6 +71,18 @@ static const CGFloat paddleWidth = 80;
 - (void)touchesEnded
 {
     self.isTouchStartedInsidePaddleHorizontally = NO;
+}
+
+- (void)move:(CGFloat) ballCenterX dt:(CGFloat) dt
+{
+    if (ballCenterX > self.center.x)
+    {
+        self.center = CGPointMake(self.center.x + aiPaddleSpeed * dt, self.center.y);
+    }
+    else
+    {
+        self.center = CGPointMake(self.center.x - aiPaddleSpeed * dt, self.center.y);
+    }
 }
 
 @end

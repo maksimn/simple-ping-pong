@@ -55,7 +55,7 @@
     CGFloat ballCenterX = ball.center.x;
     CGFloat paddleMinX = CGRectGetMinX(paddle.frame);
     CGFloat paddleMaxX = CGRectGetMaxX(paddle.frame);
-    CGFloat delta = 7;
+    CGFloat delta = 12;
     
     return ballCenterX + delta >= paddleMinX && ballCenterX - delta <= paddleMaxX ? YES : NO;
 }

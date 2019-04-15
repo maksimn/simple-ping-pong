@@ -8,6 +8,12 @@
 
 
 #import "AMXBall.h"
+#import "AMXPaddle.h"
+#import "AMXCollisionsDetector.h"
+
+
+const CGFloat ballInitX_ = 175.f;
+const CGFloat ballInitY_ = 250.f;
 
 
 @implementation AMXBall
@@ -27,6 +33,32 @@
     }
     
     return self;
+}
+
+- (void)move:(AMXPaddle *) gamerPaddle aiPaddle:(AMXPaddle *) aiPaddle dt:(CGFloat) dt
+{
+    if ([AMXCollisionsDetector doGamerPaddleAndBallHaveCollision:self gamerPaddle:gamerPaddle dt:dt] ||
+        [AMXCollisionsDetector doAiPaddleAndBallHaveCollision:self aiPaddle:aiPaddle dt:dt])
+    {
+        self.velocityY = -self.velocityY;
+        return;
+    }
+    if ([AMXCollisionsDetector doHorizontalWallAndBallHaveCollision:self dt:dt])
+    {
+        self.center = CGPointMake(ballInitX_, ballInitY_);
+        self.velocityX = -self.velocityX;
+        self.velocityY = -self.velocityY;
+        return;
+    }
+    if ([AMXCollisionsDetector doVerticalWallAndBallHaveCollision:self dt:dt])
+    {
+        self.velocityX = -self.velocityX;
+        return;
+    }
+    
+    CGFloat ballX = self.center.x + self.velocityX * dt;
+    CGFloat ballY = self.center.y + self.velocityY * dt;
+    self.center = CGPointMake(ballX, ballY);
 }
 
 @end
