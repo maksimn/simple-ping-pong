@@ -9,15 +9,7 @@
 #import "AMXGameTable.h"
 #import "AMXBall.h"
 #import "AMXPaddle.h"
-
-
-const CGFloat dt = 0.2;
-const CGFloat ballRadius = 25.f;
-const CGFloat ballInitX = 175.f;
-const CGFloat ballInitY = 250.f;
-const CGFloat ballInitVelocityX = 5;
-const CGFloat ballInitVelocityY = 8.5;
-const double timeInterval = 0.01;
+#import "AMXValues.h"
 
 
 @interface AMXGameTable ()
