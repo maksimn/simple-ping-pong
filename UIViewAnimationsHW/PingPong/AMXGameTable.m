@@ -15,9 +15,9 @@ const CGFloat dt = 0.2;
 const CGFloat ballRadius = 25.f;
 const CGFloat ballInitX = 175.f;
 const CGFloat ballInitY = 250.f;
-const CGFloat ballInitVelocityX = 0.1;
-const CGFloat ballInitVelocityY = 0.17;
-const double timeInterval = 0.0002;
+const CGFloat ballInitVelocityX = 5;
+const CGFloat ballInitVelocityY = 8.5;
+const double timeInterval = 0.01;
 
 
 @interface AMXGameTable ()
@@ -88,7 +88,7 @@ const double timeInterval = 0.0002;
     self.gamerPaddle = [[AMXPaddle alloc] initWith:gamerPaddleInitX y:gamerPaddleInitY];
     [self addSubview:self.gamerPaddle];
     
-    self.aiPaddle = [[AMXPaddle alloc] initWith:gamerPaddleInitX y:30];
+    self.aiPaddle = [[AMXPaddle alloc] initWith:gamerPaddleInitX y:35];
     [self addSubview:self.aiPaddle];
 }
 

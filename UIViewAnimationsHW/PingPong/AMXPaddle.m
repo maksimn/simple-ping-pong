@@ -12,7 +12,7 @@
 
 static const CGFloat paddleHeight = 15;
 static const CGFloat paddleWidth = 80;
-const CGFloat aiPaddleSpeed = 0.03;
+const CGFloat aiPaddleSpeed = 1.5;
 
 
 @interface AMXPaddle ()
