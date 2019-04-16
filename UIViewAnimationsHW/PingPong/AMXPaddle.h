@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)touchesMoved:(UITouch *) touch gameTable:(UIView *) gameTable screenWidth:(CGFloat) screenWidth;
 - (void)touchesEnded;
 
-- (void)move:(CGFloat) ballCenterX dt:(CGFloat) dt;
+- (void)move:(CGFloat) ballCenterX screenWidth:(CGFloat) screenWidth;
 
 @property (nonatomic, assign) CGFloat velocity;
 

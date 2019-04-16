@@ -7,12 +7,13 @@
 //
 
 #import "AMXCollisionsDetector.h"
+#import "AMXValues.h"
 
 
 @implementation AMXCollisionsDetector
 
 
-+ (BOOL)doGamerPaddleAndBallHaveCollision:(AMXBall *)ball gamerPaddle:(AMXPaddle *) gamerPaddle dt:(CGFloat) dt
++ (BOOL)doGamerPaddleAndBallHaveCollision:(AMXBall *)ball gamerPaddle:(AMXPaddle *) gamerPaddle
 {
     CGFloat ballMaxY = CGRectGetMaxY(ball.frame);
     CGFloat ballNextMaxY = ballMaxY + ball.velocityY * dt;
@@ -22,7 +23,7 @@
              ballNextMaxY >= paddleMinY) ? YES : NO;
 }
 
-+ (BOOL)doAiPaddleAndBallHaveCollision:(AMXBall *)ball aiPaddle:(AMXPaddle *) aiPaddle dt:(CGFloat) dt
++ (BOOL)doAiPaddleAndBallHaveCollision:(AMXBall *)ball aiPaddle:(AMXPaddle *) aiPaddle
 {
     CGFloat ballMinY = CGRectGetMinY(ball.frame);
     CGFloat ballNextMinY = ballMinY + ball.velocityY * dt;
@@ -32,7 +33,7 @@
             ballNextMinY <= paddleMaxY) ? YES : NO;
 }
 
-+ (BOOL)doVerticalWallAndBallHaveCollision:(AMXBall *)ball dt:(CGFloat) dt
++ (BOOL)doVerticalWallAndBallHaveCollision:(AMXBall *)ball
 {
     CGFloat ballX = ball.center.x + ball.velocityX * dt;
     CGFloat ballRadius = ball.bounds.size.width / 2;
@@ -41,7 +42,7 @@
     return (ballX + ballRadius > screenWidth || ballX - ballRadius < 0) ? YES : NO;
 }
 
-+ (BOOL)doHorizontalWallAndBallHaveCollision:(AMXBall *)ball dt:(CGFloat) dt
++ (BOOL)doHorizontalWallAndBallHaveCollision:(AMXBall *)ball
 {
     CGFloat ballY = ball.center.y + ball.velocityY * dt;
     CGFloat ballRadius = ball.bounds.size.width / 2;

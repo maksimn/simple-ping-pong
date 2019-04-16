@@ -32,22 +32,22 @@
     return self;
 }
 
-- (void)move:(AMXPaddle *) gamerPaddle aiPaddle:(AMXPaddle *) aiPaddle dt:(CGFloat) dt
+- (void)move:(AMXPaddle *) gamerPaddle aiPaddle:(AMXPaddle *) aiPaddle
 {
-    if ([AMXCollisionsDetector doGamerPaddleAndBallHaveCollision:self gamerPaddle:gamerPaddle dt:dt] ||
-        [AMXCollisionsDetector doAiPaddleAndBallHaveCollision:self aiPaddle:aiPaddle dt:dt])
+    if ([AMXCollisionsDetector doGamerPaddleAndBallHaveCollision:self gamerPaddle:gamerPaddle] ||
+        [AMXCollisionsDetector doAiPaddleAndBallHaveCollision:self aiPaddle:aiPaddle])
     {
         self.velocityY = -self.velocityY;
         return;
     }
-    if ([AMXCollisionsDetector doHorizontalWallAndBallHaveCollision:self dt:dt])
+    if ([AMXCollisionsDetector doHorizontalWallAndBallHaveCollision:self])
     {
         self.center = CGPointMake(ballInitX, ballInitY);
         self.velocityX = -self.velocityX;
         self.velocityY = -self.velocityY;
         return;
     }
-    if ([AMXCollisionsDetector doVerticalWallAndBallHaveCollision:self dt:dt])
+    if ([AMXCollisionsDetector doVerticalWallAndBallHaveCollision:self])
     {
         self.velocityX = -self.velocityX;
         return;

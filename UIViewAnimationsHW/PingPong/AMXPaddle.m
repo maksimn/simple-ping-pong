@@ -8,6 +8,7 @@
 
 
 #import "AMXPaddle.h"
+#import "AMXValues.h"
 
 
 static const CGFloat paddleHeight = 15;
@@ -59,7 +60,6 @@ static const CGFloat paddleWidth = 80;
         
         CGFloat paddleHalfWidth = CGRectGetWidth(self.frame) / 2;
         
-        
         if (point.x > paddleHalfWidth && point.x < screenWidth - paddleHalfWidth)
         {
             self.center = point;
@@ -72,8 +72,10 @@ static const CGFloat paddleWidth = 80;
     self.isTouchStartedInsidePaddleHorizontally = NO;
 }
 
-- (void)move:(CGFloat) ballCenterX dt:(CGFloat) dt
+- (void)move:(CGFloat) ballCenterX screenWidth:(CGFloat) screenWidth
 {
+    CGFloat paddleHalfWidth = CGRectGetWidth(self.frame) / 2;
+    
     if (ballCenterX > self.center.x)
     {
         self.center = CGPointMake(self.center.x + self.velocity * dt, self.center.y);
