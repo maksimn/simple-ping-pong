@@ -11,6 +11,7 @@
 #import "AMXPaddle.h"
 #import "AMXValues.h"
 #import "AMXGameSettingsView.h"
+#import "AMXTranstions.h"
 
 
 @interface AMXGameTable ()
@@ -121,7 +122,7 @@
 {
     self.gameSettingsView = [[AMXGameSettingsView alloc] initWithView:self.view];
     [self.view addSubview:self.gameSettingsView];
-    [self.view.layer addAnimation:[AMXGameSettingsView createTransitionToShowSettings] forKey:kCATransition];
+    [self.view.layer addAnimation:[AMXTranstions createTransitionToShowSettings] forKey:kCATransition];
 }
 
 @end

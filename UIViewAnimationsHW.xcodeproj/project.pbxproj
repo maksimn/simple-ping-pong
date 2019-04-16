@@ -17,6 +17,7 @@
 		0C8BD8A922636054002A4D25 /* AMXCollisionsDetector.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C8BD8A822636054002A4D25 /* AMXCollisionsDetector.m */; };
 		0C8BD8B92264638B002A4D25 /* AMXValues.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C8BD8B82264638B002A4D25 /* AMXValues.m */; };
 		0C8BD8C022659F5C002A4D25 /* AMXGameSettingsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C8BD8BF22659F5C002A4D25 /* AMXGameSettingsView.m */; };
+		0C8BD8C322660085002A4D25 /* AMXTranstions.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C8BD8C222660085002A4D25 /* AMXTranstions.m */; };
 		0CE1C1FD2251259E007E84E0 /* AMXBall.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CE1C1FC2251259E007E84E0 /* AMXBall.m */; };
 /* End PBXBuildFile section */
 
@@ -40,6 +41,8 @@
 		0C8BD8B82264638B002A4D25 /* AMXValues.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMXValues.m; sourceTree = "<group>"; };
 		0C8BD8BE22659F5C002A4D25 /* AMXGameSettingsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMXGameSettingsView.h; sourceTree = "<group>"; };
 		0C8BD8BF22659F5C002A4D25 /* AMXGameSettingsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMXGameSettingsView.m; sourceTree = "<group>"; };
+		0C8BD8C122660085002A4D25 /* AMXTranstions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMXTranstions.h; sourceTree = "<group>"; };
+		0C8BD8C222660085002A4D25 /* AMXTranstions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMXTranstions.m; sourceTree = "<group>"; };
 		0CE1C1FB2251259E007E84E0 /* AMXBall.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMXBall.h; sourceTree = "<group>"; };
 		0CE1C1FC2251259E007E84E0 /* AMXBall.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMXBall.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -102,6 +105,8 @@
 				0C8BD8B82264638B002A4D25 /* AMXValues.m */,
 				0C8BD8BE22659F5C002A4D25 /* AMXGameSettingsView.h */,
 				0C8BD8BF22659F5C002A4D25 /* AMXGameSettingsView.m */,
+				0C8BD8C122660085002A4D25 /* AMXTranstions.h */,
+				0C8BD8C222660085002A4D25 /* AMXTranstions.m */,
 			);
 			path = PingPong;
 			sourceTree = "<group>";
@@ -180,6 +185,7 @@
 				0CE1C1FD2251259E007E84E0 /* AMXBall.m in Sources */,
 				0C8BD8A3226222F3002A4D25 /* AMXGameTable.m in Sources */,
 				0C8BD8B92264638B002A4D25 /* AMXValues.m in Sources */,
+				0C8BD8C322660085002A4D25 /* AMXTranstions.m in Sources */,
 				0C24459E224AA63F00935367 /* ViewController.m in Sources */,
 				0C2445A9224AA64000935367 /* main.m in Sources */,
 				0C8BD8C022659F5C002A4D25 /* AMXGameSettingsView.m in Sources */,

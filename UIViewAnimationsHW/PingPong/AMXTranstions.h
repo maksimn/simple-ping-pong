@@ -1,5 +1,5 @@
 //
-//  AMXGameSettingsView.h
+//  AMXTranstions.h
 //  UIViewAnimationsHW
 //
 //  Created by Maksim Ivanov on 16/04/2019.
@@ -10,9 +10,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface AMXGameSettingsView : UIView
+@interface AMXTranstions : NSObject
 
-- (instancetype)initWithView:(UIView *) view;
++ (CATransition *)createTransitionToShowSettings;
++ (CATransition *)createTransitionToHideSettings;
+
 
 @end
 

@@ -7,6 +7,7 @@
 //
 
 #import "AMXGameSettingsView.h"
+#import "AMXTranstions.h"
 
 
 @interface AMXGameSettingsView ()
@@ -54,31 +55,12 @@
     return self;
 }
 
-+ (CATransition *)createTransitionToShowSettings
-{
-    CATransition *transition = [CATransition animation];
-    transition.duration = 1.2;
-    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    transition.type = kCATransitionMoveIn;
-    return transition;
-}
-
-+ (CATransition *)createTransitionToHideSettings
-{
-    CATransition *transition = [CATransition animation];
-    transition.duration = 1.2;
-    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
-    transition.subtype = kCATransitionFromLeft;
-    transition.type = kCATransitionReveal;
-    return transition;
-}
-
 - (void)backToGame
 {
     [self removeFromSuperview];
     // self.ball.center = self.savePoint;
     
-    [self.view.layer addAnimation:[AMXGameSettingsView createTransitionToHideSettings] forKey:kCATransition];
+    [self.view.layer addAnimation:[AMXTranstions createTransitionToHideSettings] forKey:kCATransition];
 }
 
 
