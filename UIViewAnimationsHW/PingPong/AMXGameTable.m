@@ -112,7 +112,7 @@
 - (void)prepareSettingsButton
 {
     self.settingsButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    self.settingsButton.frame = CGRectMake(CGRectGetMidX(self.view.frame) - 20.0, CGRectGetMidY(self.view.frame) - 15.0, 40.0, 30.0);
+    self.settingsButton.frame = CGRectMake(40.0, CGRectGetMidY(self.view.frame) - 15.0, 40.0, 30.0);
     self.settingsButton.backgroundColor = [UIColor cyanColor];
     [self.settingsButton setTitle:@"||" forState:UIControlStateNormal];
     [self.settingsButton addTarget:self action:@selector(showSettings) forControlEvents:UIControlEventTouchUpInside];
