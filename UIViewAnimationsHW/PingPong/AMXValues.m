@@ -15,3 +15,4 @@ const CGFloat ballInitY = 250.f;
 const CGFloat ballInitVelocityX = 5;
 const CGFloat ballInitVelocityY = 8.5;
 const double timeInterval = 0.01;
+const CGFloat aiPaddleDefaultVelocity = 1.5;

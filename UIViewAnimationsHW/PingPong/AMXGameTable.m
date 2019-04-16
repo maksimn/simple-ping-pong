@@ -86,6 +86,7 @@
     [self addSubview:self.gamerPaddle];
     
     self.aiPaddle = [[AMXPaddle alloc] initWith:gamerPaddleInitX y:35];
+    self.aiPaddle.velocity = aiPaddleDefaultVelocity;
     [self addSubview:self.aiPaddle];
 }
 

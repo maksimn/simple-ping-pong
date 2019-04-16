@@ -21,6 +21,7 @@ extern const CGFloat ballInitY;
 extern const CGFloat ballInitVelocityX;
 extern const CGFloat ballInitVelocityY;
 extern const double timeInterval;
+extern const CGFloat aiPaddleDefaultVelocity;
 
 
 #endif /* AMXValues_h */

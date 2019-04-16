@@ -12,7 +12,6 @@
 
 static const CGFloat paddleHeight = 15;
 static const CGFloat paddleWidth = 80;
-const CGFloat aiPaddleSpeed = 1.5;
 
 
 @interface AMXPaddle ()
@@ -33,7 +32,6 @@ const CGFloat aiPaddleSpeed = 1.5;
         self.backgroundColor = UIColor.darkGrayColor;
         self.layer.masksToBounds = YES;
         self.layer.cornerRadius = 7;
-        self.velocity = aiPaddleSpeed;
     }
     
     return self;
@@ -78,11 +76,11 @@ const CGFloat aiPaddleSpeed = 1.5;
 {
     if (ballCenterX > self.center.x)
     {
-        self.center = CGPointMake(self.center.x + aiPaddleSpeed * dt, self.center.y);
+        self.center = CGPointMake(self.center.x + self.velocity * dt, self.center.y);
     }
     else
     {
-        self.center = CGPointMake(self.center.x - aiPaddleSpeed * dt, self.center.y);
+        self.center = CGPointMake(self.center.x - self.velocity * dt, self.center.y);
     }
 }
 
