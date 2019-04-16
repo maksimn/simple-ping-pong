@@ -20,4 +20,13 @@
     return self;
 }
 
++ (CATransition *)createTransitionToShowSettings
+{
+    CATransition *transition = [CATransition animation];
+    transition.duration = 2;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    transition.type = kCATransitionMoveIn;
+    return transition;
+}
+
 @end

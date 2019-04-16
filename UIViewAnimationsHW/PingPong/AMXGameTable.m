@@ -121,6 +121,7 @@
 {
     self.gameSettingsView = [[AMXGameSettingsView alloc] init];
     [self.view addSubview:self.gameSettingsView];
+    [self.view.layer addAnimation:[AMXGameSettingsView createTransitionToShowSettings] forKey:kCATransition];
 }
 
 @end
