@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface AMXGameSettingsView : UIView
 
-- (instancetype)init;
+- (instancetype)initWithView:(UIView *) view;
 
 + (CATransition *)createTransitionToShowSettings;
 

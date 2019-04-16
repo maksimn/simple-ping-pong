@@ -11,6 +11,7 @@
 
 @interface AMXGameSettingsView ()
 
+@property (nonatomic, strong) UIView *view;
 @property (nonatomic, strong) UISlider *ballVelocitySlider;
 @property (nonatomic, strong) UISlider *aiPaddleVelocitySlider;
 @property (nonatomic, strong) UIButton *backButton;
@@ -20,10 +21,11 @@
 
 @implementation AMXGameSettingsView
 
-- (instancetype)init
+- (instancetype)initWithView:(UIView *) view
 {
     if (self = [super initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)])
     {
+        self.view = view;
         CGFloat colorValue = 0.8;
         self.backgroundColor = [[UIColor alloc] initWithRed:colorValue green:colorValue blue:colorValue alpha:1.0];
         
@@ -55,15 +57,29 @@
 + (CATransition *)createTransitionToShowSettings
 {
     CATransition *transition = [CATransition animation];
-    transition.duration = 2;
+    transition.duration = 1.2;
     transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
     transition.type = kCATransitionMoveIn;
     return transition;
 }
 
++ (CATransition *)createTransitionToHideSettings
+{
+    CATransition *transition = [CATransition animation];
+    transition.duration = 1.2;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
+    transition.subtype = kCATransitionFromLeft;
+    transition.type = kCATransitionReveal;
+    return transition;
+}
+
 - (void)backToGame
 {
+    [self removeFromSuperview];
+    // self.ball.center = self.savePoint;
     
+    [self.view.layer addAnimation:[AMXGameSettingsView createTransitionToHideSettings] forKey:kCATransition];
 }
+
 
 @end
