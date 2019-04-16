@@ -33,6 +33,7 @@ const CGFloat aiPaddleSpeed = 1.5;
         self.backgroundColor = UIColor.darkGrayColor;
         self.layer.masksToBounds = YES;
         self.layer.cornerRadius = 7;
+        self.velocity = aiPaddleSpeed;
     }
     
     return self;

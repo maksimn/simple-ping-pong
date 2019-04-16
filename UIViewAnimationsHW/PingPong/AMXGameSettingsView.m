@@ -9,6 +9,9 @@
 #import "AMXGameSettingsView.h"
 #import "AMXTranstions.h"
 
+const float aiPaddleMinVelocity = 1;
+const float aiPaddleMaxVelocity = 4;
+
 
 @interface AMXGameSettingsView ()
 
@@ -16,15 +19,21 @@
 @property (nonatomic, strong) UISlider *aiPaddleVelocitySlider;
 @property (nonatomic, strong) UIButton *backButton;
 
+@property (nonatomic, assign) CGPoint ballVelocity;
+@property (nonatomic, assign) CGFloat aiPaddleVelocity;
+
 @end
 
 
 @implementation AMXGameSettingsView
 
-- (instancetype)init
+- (instancetype)initWithBallVelocity:(CGPoint) ballVelocity aiPaddleVelocity:(CGFloat) aiPaddleVelocity
 {
     if (self = [super initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)])
     {
+        self.ballVelocity = ballVelocity;
+        self.aiPaddleVelocity = aiPaddleVelocity;
+        
         CGFloat colorValue = 0.8;
         self.backgroundColor = [[UIColor alloc] initWithRed:colorValue green:colorValue blue:colorValue alpha:1.0];
         
@@ -40,6 +49,7 @@
         [self addSubview: aiPaddleVelocityLabel];
         
         self.aiPaddleVelocitySlider = [[UISlider alloc] initWithFrame:CGRectMake(44, 180, 200, 30)];
+        self.aiPaddleVelocitySlider.value = (self.aiPaddleVelocity - aiPaddleMinVelocity) / aiPaddleMaxVelocity;
         [self addSubview:self.aiPaddleVelocitySlider];
         
         self.backButton = [UIButton buttonWithType:UIButtonTypeSystem];

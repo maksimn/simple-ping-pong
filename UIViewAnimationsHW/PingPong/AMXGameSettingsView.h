@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface AMXGameSettingsView : UIView
 
-- (instancetype)init;
+- (instancetype)initWithBallVelocity:(CGPoint) ballVelocity aiPaddleVelocity:(CGFloat) aiPaddleVelocity;
 
 @property (nonatomic, copy) void (^backToGameCallback)(void);
 

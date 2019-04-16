@@ -23,6 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)move:(CGFloat) ballCenterX dt:(CGFloat) dt;
 
+@property (nonatomic, assign) CGFloat velocity;
+
 @end
 
 
