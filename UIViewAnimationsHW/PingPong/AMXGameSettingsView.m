@@ -6,11 +6,16 @@
 //  Copyright © 2019 Maksim Ivanov. All rights reserved.
 //
 
+#include "math.h"
 #import "AMXGameSettingsView.h"
 #import "AMXTranstions.h"
 
+
 const float aiPaddleMinVelocity = 1;
 const float aiPaddleMaxVelocity = 4;
+
+const float ballMinVelocity = 5;
+const float ballMaxVelocity = 20;
 
 
 @interface AMXGameSettingsView ()
@@ -42,6 +47,8 @@ const float aiPaddleMaxVelocity = 4;
         [self addSubview: ballVelocityLabel];
         
         self.ballVelocitySlider = [[UISlider alloc] initWithFrame:CGRectMake(44, 80, 200, 30)];
+        self.ballVelocitySlider.value = sqrt(ballVelocity.x * ballVelocity.x + ballVelocity.y + ballVelocity.y) /
+                                        (ballMaxVelocity - ballMinVelocity);
         [self addSubview:self.ballVelocitySlider];
         
         UILabel *aiPaddleVelocityLabel = [[UILabel alloc] initWithFrame:CGRectMake(44, 140, 300, 30)];
@@ -49,7 +56,8 @@ const float aiPaddleMaxVelocity = 4;
         [self addSubview: aiPaddleVelocityLabel];
         
         self.aiPaddleVelocitySlider = [[UISlider alloc] initWithFrame:CGRectMake(44, 180, 200, 30)];
-        self.aiPaddleVelocitySlider.value = (self.aiPaddleVelocity - aiPaddleMinVelocity) / aiPaddleMaxVelocity;
+        self.aiPaddleVelocitySlider.value = (self.aiPaddleVelocity - aiPaddleMinVelocity) /
+                                            (aiPaddleMaxVelocity - aiPaddleMinVelocity);
         [self addSubview:self.aiPaddleVelocitySlider];
         
         self.backButton = [UIButton buttonWithType:UIButtonTypeSystem];
