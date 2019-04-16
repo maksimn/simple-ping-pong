@@ -78,11 +78,19 @@ static const CGFloat paddleWidth = 80;
     
     if (ballCenterX > self.center.x)
     {
-        self.center = CGPointMake(self.center.x + self.velocity * dt, self.center.y);
+        CGFloat nextX = self.center.x + self.velocity * dt;
+        if (nextX + paddleHalfWidth < screenWidth)
+        {
+            self.center = CGPointMake(nextX, self.center.y);
+        }
     }
     else
     {
-        self.center = CGPointMake(self.center.x - self.velocity * dt, self.center.y);
+        CGFloat nextX = self.center.x - self.velocity * dt;
+        if (nextX - paddleHalfWidth > 0)
+        {
+            self.center = CGPointMake(nextX, self.center.y);
+        }
     }
 }
 
