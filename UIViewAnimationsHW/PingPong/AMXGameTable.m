@@ -10,6 +10,7 @@
 #import "AMXBall.h"
 #import "AMXPaddle.h"
 #import "AMXValues.h"
+#import "AMXGameSettingsView.h"
 
 
 @interface AMXGameTable ()
@@ -20,6 +21,7 @@
 @property (nonatomic, strong) AMXPaddle *aiPaddle;
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, strong) UIButton *settingsButton;
+@property (nonatomic, strong) AMXGameSettingsView *gameSettingsView;
 
 @property (nonatomic, assign) CGFloat screenWidth;
 @property (nonatomic, assign) CGFloat screenHeight;
@@ -117,7 +119,8 @@
 
 - (void)showSettings
 {
-    
+    self.gameSettingsView = [[AMXGameSettingsView alloc] init];
+    [self.view addSubview:self.gameSettingsView];
 }
 
 @end
