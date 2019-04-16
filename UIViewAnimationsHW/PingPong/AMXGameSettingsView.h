@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)initWithBallVelocity:(CGPoint) ballVelocity aiPaddleVelocity:(CGFloat) aiPaddleVelocity;
 
-@property (nonatomic, copy) void (^backToGameCallback)(void);
+@property (nonatomic, copy) void (^backToGameCallback)(CGPoint ballVelocity, CGFloat aiPaddleVelocity);
 
 @end
 

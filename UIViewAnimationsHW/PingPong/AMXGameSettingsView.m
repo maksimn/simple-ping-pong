@@ -47,8 +47,7 @@ const float ballMaxVelocity = 20;
         [self addSubview: ballVelocityLabel];
         
         self.ballVelocitySlider = [[UISlider alloc] initWithFrame:CGRectMake(44, 80, 200, 30)];
-        self.ballVelocitySlider.value = sqrt(ballVelocity.x * ballVelocity.x + ballVelocity.y + ballVelocity.y) /
-                                        (ballMaxVelocity - ballMinVelocity);
+        self.ballVelocitySlider.value = [self ballVelocityToSliderValue];
         [self addSubview:self.ballVelocitySlider];
         
         UILabel *aiPaddleVelocityLabel = [[UILabel alloc] initWithFrame:CGRectMake(44, 140, 300, 30)];
@@ -56,8 +55,7 @@ const float ballMaxVelocity = 20;
         [self addSubview: aiPaddleVelocityLabel];
         
         self.aiPaddleVelocitySlider = [[UISlider alloc] initWithFrame:CGRectMake(44, 180, 200, 30)];
-        self.aiPaddleVelocitySlider.value = (self.aiPaddleVelocity - aiPaddleMinVelocity) /
-                                            (aiPaddleMaxVelocity - aiPaddleMinVelocity);
+        self.aiPaddleVelocitySlider.value = [self aiPaddleVelocityToSliderValue];
         [self addSubview:self.aiPaddleVelocitySlider];
         
         self.backButton = [UIButton buttonWithType:UIButtonTypeSystem];
@@ -73,9 +71,37 @@ const float ballMaxVelocity = 20;
 
 - (void)backToGame
 {
+    float ballVelocitySliderValue = self.ballVelocitySlider.value;
+    float aiPaddleVelocitySliderValue = self.aiPaddleVelocitySlider.value;
+    CGPoint ballVelocity = [self ballVelocitySliderValueToBallVelocity:ballVelocitySliderValue];
+    CGFloat aiPaddleVelocity = [self aiPaddleVelocitySliderValueToAiPaddleVelocity:aiPaddleVelocitySliderValue];
     [self removeFromSuperview];    
-    self.backToGameCallback();
+    self.backToGameCallback(ballVelocity, aiPaddleVelocity);
 }
 
+- (float)ballVelocityToSliderValue
+{
+    return (sqrt(self.ballVelocity.x * self.ballVelocity.x + self.ballVelocity.y * self.ballVelocity.y) - ballMinVelocity)/
+            (ballMaxVelocity - ballMinVelocity);
+}
+
+- (float)aiPaddleVelocityToSliderValue
+{
+    return (self.aiPaddleVelocity - aiPaddleMinVelocity) / (aiPaddleMaxVelocity - aiPaddleMinVelocity);
+}
+
+- (CGPoint)ballVelocitySliderValueToBallVelocity:(float) value
+{
+    CGFloat ballVelocityModule = sqrt(self.ballVelocity.x * self.ballVelocity.x + self.ballVelocity.y * self.ballVelocity.y);
+    CGFloat cosAlpha = self.ballVelocity.x / ballVelocityModule;
+    CGFloat sinAlpha = self.ballVelocity.y / ballVelocityModule;
+    CGFloat newBallVelocityModule = ballMinVelocity + value * (ballMaxVelocity - ballMinVelocity);
+    return CGPointMake(newBallVelocityModule * cosAlpha, newBallVelocityModule * sinAlpha);
+}
+
+- (CGFloat)aiPaddleVelocitySliderValueToAiPaddleVelocity:(float) value
+{
+    return aiPaddleMinVelocity + value * (aiPaddleMaxVelocity - aiPaddleMinVelocity);
+}
 
 @end

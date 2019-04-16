@@ -124,7 +124,10 @@
     [self stopTimer];
     self.gameSettingsView = [[AMXGameSettingsView alloc] initWithBallVelocity:CGPointMake(self.ball.velocityX, self.ball.velocityY) aiPaddleVelocity:self.aiPaddle.velocity];
     __weak typeof(self) weakSelf = self;
-    self.gameSettingsView.backToGameCallback = ^{
+    self.gameSettingsView.backToGameCallback = ^(CGPoint ballVelocity, CGFloat aiPaddleVelocity){
+        weakSelf.ball.velocityX = ballVelocity.x;
+        weakSelf.ball.velocityY = ballVelocity.y;
+        weakSelf.aiPaddle.velocity = aiPaddleVelocity;
         [weakSelf.view.layer addAnimation:[AMXTranstions createTransitionToHideSettings] forKey:kCATransition];
         [weakSelf startTimer];
     };

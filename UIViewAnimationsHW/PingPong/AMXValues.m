@@ -9,7 +9,7 @@
 #import "AMXValues.h"
 
 const CGFloat dt = 0.2;
-const CGFloat ballRadius = 25.f;
+const CGFloat ballRadius = 12.5f;
 const CGFloat ballInitX = 175.f;
 const CGFloat ballInitY = 250.f;
 const CGFloat ballInitVelocityX = 5;
