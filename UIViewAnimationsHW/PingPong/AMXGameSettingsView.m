@@ -12,7 +12,6 @@
 
 @interface AMXGameSettingsView ()
 
-@property (nonatomic, strong) UIView *view;
 @property (nonatomic, strong) UISlider *ballVelocitySlider;
 @property (nonatomic, strong) UISlider *aiPaddleVelocitySlider;
 @property (nonatomic, strong) UIButton *backButton;
@@ -22,11 +21,10 @@
 
 @implementation AMXGameSettingsView
 
-- (instancetype)initWithView:(UIView *) view
+- (instancetype)init
 {
     if (self = [super initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)])
     {
-        self.view = view;
         CGFloat colorValue = 0.8;
         self.backgroundColor = [[UIColor alloc] initWithRed:colorValue green:colorValue blue:colorValue alpha:1.0];
         
@@ -57,10 +55,8 @@
 
 - (void)backToGame
 {
-    [self removeFromSuperview];
-    // self.ball.center = self.savePoint;
-    
-    [self.view.layer addAnimation:[AMXTranstions createTransitionToHideSettings] forKey:kCATransition];
+    [self removeFromSuperview];    
+    self.backToGameCallback();
 }
 
 

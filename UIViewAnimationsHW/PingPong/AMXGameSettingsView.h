@@ -12,7 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface AMXGameSettingsView : UIView
 
-- (instancetype)initWithView:(UIView *) view;
+- (instancetype)init;
+
+@property (nonatomic, copy) void (^backToGameCallback)(void);
 
 @end
 

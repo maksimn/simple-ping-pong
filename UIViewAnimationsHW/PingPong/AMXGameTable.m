@@ -102,7 +102,7 @@
                                                 userInfo:nil repeats:YES];
 }
 
-- (void)stopTimerAnimation
+- (void)stopTimer
 {
     [self.timer invalidate];
     self.timer = nil;
@@ -120,7 +120,13 @@
 
 - (void)showSettings
 {
-    self.gameSettingsView = [[AMXGameSettingsView alloc] initWithView:self.view];
+    [self stopTimer];
+    self.gameSettingsView = [[AMXGameSettingsView alloc] init];
+    __weak typeof(self) weakSelf = self;
+    self.gameSettingsView.backToGameCallback = ^{
+        [weakSelf.view.layer addAnimation:[AMXTranstions createTransitionToHideSettings] forKey:kCATransition];
+        [weakSelf startTimer];
+    };
     [self.view addSubview:self.gameSettingsView];
     [self.view.layer addAnimation:[AMXTranstions createTransitionToShowSettings] forKey:kCATransition];
 }

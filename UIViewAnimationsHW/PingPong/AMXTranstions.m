@@ -22,7 +22,7 @@
 + (CATransition *)createTransitionToHideSettings
 {
     CATransition *transition = [CATransition animation];
-    transition.duration = 1.2;
+    transition.duration = 0.6;
     transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
     transition.subtype = kCATransitionFromLeft;
     transition.type = kCATransitionReveal;
