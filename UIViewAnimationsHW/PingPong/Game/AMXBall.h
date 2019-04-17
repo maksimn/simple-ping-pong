@@ -23,6 +23,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) CGFloat velocityY;
 @property (nonatomic, assign) CGFloat radius;
 
+@property (nonatomic, copy) void (^onScoreCallback)(BOOL scoreToUpperGoal);
+
+
 /**
  Метод создания объекта шарика для игры
  
@@ -37,7 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWith:(CGFloat) x y:(CGFloat) y u:(CGFloat) u v:(CGFloat) v
                   color:(UIColor *) color radius:(CGFloat) radius;
 
-- (void)move:(AMXPaddle *) gamerPaddle aiPaddle:(AMXPaddle *) aiPaddle gameScoreView:(AMXGameScoreView *) gameScoreView;
+- (void)move:(AMXPaddle *) gamerPaddle aiPaddle:(AMXPaddle *) aiPaddle;
 
 @end
 

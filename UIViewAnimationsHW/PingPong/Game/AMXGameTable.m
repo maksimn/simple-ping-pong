@@ -64,7 +64,7 @@
 - (void)nextGameFrame
 {
     [self.aiPaddle move:self.ball.center.x screenWidth:self.screenWidth];
-    [self.ball move:self.gamerPaddle aiPaddle:self.aiPaddle gameScoreView:self.gameScoreView];
+    [self.ball move:self.gamerPaddle aiPaddle:self.aiPaddle];
 }
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
@@ -99,6 +99,17 @@
 {
     self.ball = [[AMXBall alloc] initWith:ballInitX y:ballInitY u:ballInitVelocityX v:ballInitVelocityY
                                     color:UIColor.blueColor radius:ballRadius];
+    __weak typeof(self) weakSelf = self;
+    self.ball.onScoreCallback = ^(BOOL scoreToUpperGoal) {
+        if (scoreToUpperGoal)
+        {
+            [weakSelf.gameScoreView incrementGamerScore];
+        }
+        else
+        {
+            [weakSelf.gameScoreView incrementAiScore];
+        }
+    };
     [self addSubview:self.ball];
 }
 
