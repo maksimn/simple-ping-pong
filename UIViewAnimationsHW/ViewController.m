@@ -16,8 +16,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    /// Создание "стола для игры в пинг-понг"
     AMXGameTable *gameTable = [[AMXGameTable alloc] initWithView:self.view];
     
+    /// Запуск игры
     [gameTable start];
 }
 
