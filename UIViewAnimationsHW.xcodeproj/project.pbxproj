@@ -96,6 +96,15 @@
 		0CE1C1FA22512546007E84E0 /* PingPong */ = {
 			isa = PBXGroup;
 			children = (
+				0CFF90C1226748EC00A6C30D /* Game */,
+				0CFF90C22267490600A6C30D /* GameSettings */,
+			);
+			path = PingPong;
+			sourceTree = "<group>";
+		};
+		0CFF90C1226748EC00A6C30D /* Game */ = {
+			isa = PBXGroup;
+			children = (
 				0CE1C1FB2251259E007E84E0 /* AMXBall.h */,
 				0CE1C1FC2251259E007E84E0 /* AMXBall.m */,
 				0C8BD8A1226222F3002A4D25 /* AMXGameTable.h */,
@@ -106,14 +115,21 @@
 				0C8BD8A822636054002A4D25 /* AMXCollisionsDetector.m */,
 				0C8BD8B722646370002A4D25 /* AMXValues.h */,
 				0C8BD8B82264638B002A4D25 /* AMXValues.m */,
+				0CFF90BE22670A7900A6C30D /* AMXGameScoreView.h */,
+				0CFF90BF22670A7900A6C30D /* AMXGameScoreView.m */,
+			);
+			path = Game;
+			sourceTree = "<group>";
+		};
+		0CFF90C22267490600A6C30D /* GameSettings */ = {
+			isa = PBXGroup;
+			children = (
 				0C8BD8BE22659F5C002A4D25 /* AMXGameSettingsView.h */,
 				0C8BD8BF22659F5C002A4D25 /* AMXGameSettingsView.m */,
 				0C8BD8C122660085002A4D25 /* AMXTranstions.h */,
 				0C8BD8C222660085002A4D25 /* AMXTranstions.m */,
-				0CFF90BE22670A7900A6C30D /* AMXGameScoreView.h */,
-				0CFF90BF22670A7900A6C30D /* AMXGameScoreView.m */,
 			);
-			path = PingPong;
+			path = GameSettings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

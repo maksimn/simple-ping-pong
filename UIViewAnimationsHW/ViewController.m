@@ -8,7 +8,7 @@
 
 
 #import "ViewController.h"
-#import "PingPong/AMXGameTable.h"
+#import "PingPong/Game/AMXGameTable.h"
 
 
 @implementation ViewController
