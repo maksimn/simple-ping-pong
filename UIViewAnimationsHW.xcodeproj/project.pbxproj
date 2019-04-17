@@ -20,6 +20,8 @@
 		0C8BD8C322660085002A4D25 /* AMXTranstions.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C8BD8C222660085002A4D25 /* AMXTranstions.m */; };
 		0CE1C1FD2251259E007E84E0 /* AMXBall.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CE1C1FC2251259E007E84E0 /* AMXBall.m */; };
 		0CFF90C022670A7900A6C30D /* AMXGameScoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CFF90BF22670A7900A6C30D /* AMXGameScoreView.m */; };
+		0CFF90C522674BAC00A6C30D /* AMXGamerPaddle.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CFF90C422674BAC00A6C30D /* AMXGamerPaddle.m */; };
+		0CFF90C822674CFD00A6C30D /* AMXAiPaddle.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CFF90C722674CFD00A6C30D /* AMXAiPaddle.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +50,10 @@
 		0CE1C1FC2251259E007E84E0 /* AMXBall.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMXBall.m; sourceTree = "<group>"; };
 		0CFF90BE22670A7900A6C30D /* AMXGameScoreView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMXGameScoreView.h; sourceTree = "<group>"; };
 		0CFF90BF22670A7900A6C30D /* AMXGameScoreView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMXGameScoreView.m; sourceTree = "<group>"; };
+		0CFF90C322674BAC00A6C30D /* AMXGamerPaddle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMXGamerPaddle.h; sourceTree = "<group>"; };
+		0CFF90C422674BAC00A6C30D /* AMXGamerPaddle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMXGamerPaddle.m; sourceTree = "<group>"; };
+		0CFF90C622674CFD00A6C30D /* AMXAiPaddle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMXAiPaddle.h; sourceTree = "<group>"; };
+		0CFF90C722674CFD00A6C30D /* AMXAiPaddle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMXAiPaddle.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +123,10 @@
 				0C8BD8B82264638B002A4D25 /* AMXValues.m */,
 				0CFF90BE22670A7900A6C30D /* AMXGameScoreView.h */,
 				0CFF90BF22670A7900A6C30D /* AMXGameScoreView.m */,
+				0CFF90C322674BAC00A6C30D /* AMXGamerPaddle.h */,
+				0CFF90C422674BAC00A6C30D /* AMXGamerPaddle.m */,
+				0CFF90C622674CFD00A6C30D /* AMXAiPaddle.h */,
+				0CFF90C722674CFD00A6C30D /* AMXAiPaddle.m */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -201,6 +211,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0CFF90C822674CFD00A6C30D /* AMXAiPaddle.m in Sources */,
 				0C8BD8A922636054002A4D25 /* AMXCollisionsDetector.m in Sources */,
 				0C8BD8A62262F322002A4D25 /* AMXPaddle.m in Sources */,
 				0CE1C1FD2251259E007E84E0 /* AMXBall.m in Sources */,
@@ -208,6 +219,7 @@
 				0C8BD8B92264638B002A4D25 /* AMXValues.m in Sources */,
 				0C8BD8C322660085002A4D25 /* AMXTranstions.m in Sources */,
 				0C24459E224AA63F00935367 /* ViewController.m in Sources */,
+				0CFF90C522674BAC00A6C30D /* AMXGamerPaddle.m in Sources */,
 				0C2445A9224AA64000935367 /* main.m in Sources */,
 				0CFF90C022670A7900A6C30D /* AMXGameScoreView.m in Sources */,
 				0C8BD8C022659F5C002A4D25 /* AMXGameSettingsView.m in Sources */,

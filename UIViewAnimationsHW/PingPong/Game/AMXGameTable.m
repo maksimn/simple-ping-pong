@@ -9,6 +9,8 @@
 #import "AMXGameTable.h"
 #import "AMXBall.h"
 #import "AMXPaddle.h"
+#import "AMXAiPaddle.h"
+#import "AMXGamerPaddle.h"
 #import "AMXValues.h"
 #import "AMXGameSettingsView.h"
 #import "AMXTranstions.h"
@@ -19,8 +21,8 @@
 
 @property (nonatomic, strong) UIView *view;
 @property (nonatomic, strong) AMXBall *ball;
-@property (nonatomic, strong) AMXPaddle *gamerPaddle;
-@property (nonatomic, strong) AMXPaddle *aiPaddle;
+@property (nonatomic, strong) AMXGamerPaddle *gamerPaddle;
+@property (nonatomic, strong) AMXAiPaddle *aiPaddle;
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, strong) UIButton *settingsButton;
 @property (nonatomic, strong) AMXGameSettingsView *gameSettingsView;
@@ -85,10 +87,10 @@
     CGFloat gamerPaddleInitX = self.screenWidth / 2 - 40.0;
     CGFloat gamerPaddleInitY = self.screenHeight - 30;
     
-    self.gamerPaddle = [[AMXPaddle alloc] initWith:gamerPaddleInitX y:gamerPaddleInitY];
+    self.gamerPaddle = [[AMXGamerPaddle alloc] initWith:gamerPaddleInitX y:gamerPaddleInitY];
     [self addSubview:self.gamerPaddle];
     
-    self.aiPaddle = [[AMXPaddle alloc] initWith:gamerPaddleInitX y:35];
+    self.aiPaddle = [[AMXAiPaddle alloc] initWith:gamerPaddleInitX y:35];
     self.aiPaddle.velocity = aiPaddleDefaultVelocity;
     [self addSubview:self.aiPaddle];
 }
