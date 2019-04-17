@@ -15,18 +15,16 @@
 
 @implementation AMXBall
 
-- (instancetype)initWith:(CGFloat) x y:(CGFloat) y u:(CGFloat) u v:(CGFloat) v
-                   color:(UIColor *) color radius:(CGFloat) radius
+- (instancetype)initWithPosition:(CGPoint) position velocity:(CGPoint) velocity color:(UIColor *) color
 {
-    self = [super initWithFrame:CGRectMake(x, y, 2 * radius, 2 * radius)];
+    self = [super initWithFrame:CGRectMake(position.x, position.y, 2 * ballRadius, 2 * ballRadius)];
     
     if (self)
     {
-        self.velocityX = u;
-        self.velocityY = v;
+        self.velocity = velocity;
         self.backgroundColor = color;
         self.layer.masksToBounds = YES;
-        self.layer.cornerRadius = radius;
+        self.layer.cornerRadius = ballRadius;
     }
     
     return self;
@@ -37,7 +35,7 @@
     if ([AMXCollisionsDetector doGamerPaddleAndBallHaveCollision:self gamerPaddle:gamerPaddle] ||
         [AMXCollisionsDetector doAiPaddleAndBallHaveCollision:self aiPaddle:aiPaddle])
     {
-        self.velocityY = -self.velocityY;
+        self.velocity = CGPointMake(self.velocity.x, -self.velocity.y);
         return;
     }
     
@@ -48,19 +46,16 @@
     {
         self.onScoreCallback(hasScoreToUpperGoal);
         self.center = CGPointMake(ballInitX, ballInitY);
-        self.velocityX = -self.velocityX;
-        self.velocityY = -self.velocityY;
+        self.velocity = CGPointMake(-self.velocity.x, -self.velocity.y);
         return;
     }
     if ([AMXCollisionsDetector doVerticalWallAndBallHaveCollision:self])
     {
-        self.velocityX = -self.velocityX;
+        self.velocity = CGPointMake(-self.velocity.x, self.velocity.y);
         return;
     }
     
-    CGFloat ballX = self.center.x + self.velocityX * dt;
-    CGFloat ballY = self.center.y + self.velocityY * dt;
-    self.center = CGPointMake(ballX, ballY);
+    self.center = CGPointMake(self.center.x + self.velocity.x * dt, self.center.y + self.velocity.y * dt);
 }
 
 @end

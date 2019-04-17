@@ -16,26 +16,26 @@
 + (BOOL)doGamerPaddleAndBallHaveCollision:(AMXBall *)ball gamerPaddle:(AMXPaddle *) gamerPaddle
 {
     CGFloat ballMaxY = CGRectGetMaxY(ball.frame);
-    CGFloat ballNextMaxY = ballMaxY + ball.velocityY * dt;
+    CGFloat ballNextMaxY = ballMaxY + ball.velocity.y * dt;
     CGFloat paddleMinY = CGRectGetMinY(gamerPaddle.frame);
     
-    return  (ball.velocityY > 0 && [self isBallXWithinPaddle:ball paddle:gamerPaddle] && ballMaxY <= paddleMinY &&
+    return  (ball.velocity.y > 0 && [self isBallXWithinPaddle:ball paddle:gamerPaddle] && ballMaxY <= paddleMinY &&
              ballNextMaxY >= paddleMinY) ? YES : NO;
 }
 
 + (BOOL)doAiPaddleAndBallHaveCollision:(AMXBall *)ball aiPaddle:(AMXPaddle *) aiPaddle
 {
     CGFloat ballMinY = CGRectGetMinY(ball.frame);
-    CGFloat ballNextMinY = ballMinY + ball.velocityY * dt;
+    CGFloat ballNextMinY = ballMinY + ball.velocity.y * dt;
     CGFloat paddleMaxY = CGRectGetMaxY(aiPaddle.frame);
     
-    return (ball.velocityY < 0 && [self isBallXWithinPaddle:ball paddle:aiPaddle] && ballMinY >= paddleMaxY &&
+    return (ball.velocity.y < 0 && [self isBallXWithinPaddle:ball paddle:aiPaddle] && ballMinY >= paddleMaxY &&
             ballNextMinY <= paddleMaxY) ? YES : NO;
 }
 
 + (BOOL)doVerticalWallAndBallHaveCollision:(AMXBall *)ball
 {
-    CGFloat ballX = ball.center.x + ball.velocityX * dt;
+    CGFloat ballX = ball.center.x + ball.velocity.x * dt;
     CGFloat ballRadius = ball.bounds.size.width / 2;
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
@@ -44,7 +44,7 @@
 
 + (BOOL)detectScoreToUpperGoal:(AMXBall *)ball
 {
-    CGFloat ballY = ball.center.y + ball.velocityY * dt;
+    CGFloat ballY = ball.center.y + ball.velocity.y * dt;
     CGFloat ballRadius = ball.bounds.size.width / 2;
     
     return ballY - ballRadius < 0 ? YES : NO;
@@ -53,7 +53,7 @@
 
 + (BOOL)detectScoreToLowerGoal:(AMXBall *)ball
 {
-    CGFloat ballY = ball.center.y + ball.velocityY * dt;
+    CGFloat ballY = ball.center.y + ball.velocity.y * dt;
     CGFloat ballRadius = ball.bounds.size.width / 2;
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     

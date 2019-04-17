@@ -97,8 +97,7 @@
 
 - (void)prepareBall
 {
-    self.ball = [[AMXBall alloc] initWith:ballInitX y:ballInitY u:ballInitVelocityX v:ballInitVelocityY
-                                    color:UIColor.blueColor radius:ballRadius];
+    self.ball = [[AMXBall alloc] initWithPosition:CGPointMake(ballInitX, ballInitY) velocity:CGPointMake(ballInitVelocityX, ballInitVelocityY) color:UIColor.blueColor];
     __weak typeof(self) weakSelf = self;
     self.ball.onScoreCallback = ^(BOOL scoreToUpperGoal) {
         if (scoreToUpperGoal)
@@ -144,11 +143,10 @@
 - (void)showSettings
 {
     [self stopTimer];
-    self.gameSettingsView = [[AMXGameSettingsView alloc] initWithBallVelocity:CGPointMake(self.ball.velocityX, self.ball.velocityY) aiPaddleVelocity:self.aiPaddle.velocity];
+    self.gameSettingsView = [[AMXGameSettingsView alloc] initWithBallVelocity:CGPointMake(self.ball.velocity.x, self.ball.velocity.y) aiPaddleVelocity:self.aiPaddle.velocity];
     __weak typeof(self) weakSelf = self;
     self.gameSettingsView.backToGameCallback = ^(CGPoint ballVelocity, CGFloat aiPaddleVelocity) {
-        weakSelf.ball.velocityX = ballVelocity.x;
-        weakSelf.ball.velocityY = ballVelocity.y;
+        weakSelf.ball.velocity = ballVelocity;
         weakSelf.aiPaddle.velocity = aiPaddleVelocity;
         [weakSelf.view.layer addAnimation:[AMXTranstions createTransitionToHideSettings] forKey:kCATransition];
         [weakSelf startTimer];
