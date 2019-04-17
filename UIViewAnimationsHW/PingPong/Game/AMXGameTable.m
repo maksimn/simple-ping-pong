@@ -63,8 +63,8 @@
 
 - (void)nextGameFrame
 {
-    [self.aiPaddle move:self.ball.center.x screenWidth:self.screenWidth];
     [self.ball move:self.gamerPaddle aiPaddle:self.aiPaddle];
+    [self.aiPaddle move:self.ball.center.x screenWidth:self.screenWidth];
 }
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event

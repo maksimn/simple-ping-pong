@@ -15,25 +15,33 @@
 NS_ASSUME_NONNULL_BEGIN
 
 
+/**
+ Класс мяча для игры
+ */
 @interface AMXBall : UIView
 
-@property (nonatomic, assign) CGPoint position;
-@property (nonatomic, assign) CGPoint velocity;
-@property (nonatomic, assign) CGFloat radius;
+@property (nonatomic, assign) CGPoint position; /**< координата мяча на экране */
+@property (nonatomic, assign) CGPoint velocity; /**< скорость мяча */
 
-@property (nonatomic, copy) void (^onScoreCallback)(BOOL scoreToUpperGoal);
+@property (nonatomic, copy) void (^onScoreCallback)(BOOL scoreToUpperGoal); /**< коллбэк, вызываемый при забитии гола в те или иные ворота. Параметр - флаг, указывающий, что гол забит в верхние ворота если YES, в нижние - если NO. */
 
 
 /**
- <#Description#>
+ Инициализатор объекта мяча
 
- @param position <#position description#>
- @param velocity <#velocity description#>
- @param color <#color description#>
- @return <#return value description#>
+ @param position - начальные координаты мяча
+ @param velocity - начальная скорость мяча
+ @param color - цвет мяча
+ @return экземпляр мяча
  */
 - (instancetype)initWithPosition:(CGPoint) position velocity:(CGPoint) velocity color:(UIColor *) color;
 
+/**
+ Метод, выполняющий перемещение мяча для следующего кадра игры на экране
+
+ @param gamerPaddle - ракетка игрока, от положения которой зависит перемещение мяча
+ @param aiPaddle - ракетка, управляемая компьютером, от положения которой также зависит перемещение мяча
+ */
 - (void)move:(AMXPaddle *) gamerPaddle aiPaddle:(AMXPaddle *) aiPaddle;
 
 @end
