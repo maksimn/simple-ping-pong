@@ -17,6 +17,8 @@ const float aiPaddleMaxVelocity = 8;
 const float ballMinVelocity = 5;
 const float ballMaxVelocity = 20;
 
+const float sliderWidth = 260;
+
 
 @interface AMXGameSettingsView ()
 
@@ -46,7 +48,7 @@ const float ballMaxVelocity = 20;
         ballVelocityLabel.text = @"СКОРОСТЬ ШАРИКА:";
         [self addSubview: ballVelocityLabel];
         
-        self.ballVelocitySlider = [[UISlider alloc] initWithFrame:CGRectMake(44, 80, 200, 30)];
+        self.ballVelocitySlider = [[UISlider alloc] initWithFrame:CGRectMake(44, 80, sliderWidth, 30)];
         self.ballVelocitySlider.value = [self ballVelocityToSliderValue];
         [self addSubview:self.ballVelocitySlider];
         
@@ -54,7 +56,7 @@ const float ballMaxVelocity = 20;
         aiPaddleVelocityLabel.text = @"СКОРОСТЬ РАКЕТКИ ВРАГА:";
         [self addSubview: aiPaddleVelocityLabel];
         
-        self.aiPaddleVelocitySlider = [[UISlider alloc] initWithFrame:CGRectMake(44, 180, 200, 30)];
+        self.aiPaddleVelocitySlider = [[UISlider alloc] initWithFrame:CGRectMake(44, 180, sliderWidth, 30)];
         self.aiPaddleVelocitySlider.value = [self aiPaddleVelocityToSliderValue];
         [self addSubview:self.aiPaddleVelocitySlider];
         

@@ -32,11 +32,13 @@
         self.gamerScoreLabel = [[UILabel alloc] initWithFrame:CGRectMake(size.width / 2 - 10, 0.75 * size.height - 10, 25, 25)];
         self.gamerScoreLabel.text = @"0";
         self.gamerScoreLabel.font = [self.gamerScoreLabel.font fontWithSize:25];
+        self.gamerScoreLabel.textColor = UIColor.darkGrayColor;
         [self addSubview: self.gamerScoreLabel];
         
         self.aiScoreLabel = [[UILabel alloc] initWithFrame:CGRectMake(size.width / 2 - 10, 0.25 * size.height - 10, 25, 25)];
         self.aiScoreLabel.text = @"0";
         self.aiScoreLabel.font = [self.aiScoreLabel.font fontWithSize:25];
+        self.aiScoreLabel.textColor = UIColor.darkGrayColor;
         [self addSubview: self.aiScoreLabel];
     }
     
