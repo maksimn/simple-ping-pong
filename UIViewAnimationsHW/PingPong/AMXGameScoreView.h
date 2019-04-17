@@ -14,6 +14,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)init;
 
+- (void)incrementGamerScore;
+
+- (void)incrementAiScore;
+
 @end
 
 NS_ASSUME_NONNULL_END

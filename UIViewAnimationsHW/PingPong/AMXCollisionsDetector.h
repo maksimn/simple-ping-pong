@@ -16,8 +16,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (BOOL)doGamerPaddleAndBallHaveCollision:(AMXBall *)ball gamerPaddle:(AMXPaddle *) gamerPaddle;
 + (BOOL)doAiPaddleAndBallHaveCollision:(AMXBall *)ball aiPaddle:(AMXPaddle *) aiPaddle;
++ (BOOL)detectScoreToUpperGoal:(AMXBall *)ball;
++ (BOOL)detectScoreToLowerGoal:(AMXBall *)ball;
 + (BOOL)doVerticalWallAndBallHaveCollision:(AMXBall *)ball;
-+ (BOOL)doHorizontalWallAndBallHaveCollision:(AMXBall *)ball;
 
 @end
 

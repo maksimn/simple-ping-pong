@@ -43,4 +43,16 @@
     return self;
 }
 
+- (void)incrementGamerScore
+{
+    self.gamerScore++;
+    self.gamerScoreLabel.text = [NSString stringWithFormat:@"%d", self.gamerScore];
+}
+
+- (void)incrementAiScore
+{
+    self.aiScore++;
+    self.aiScoreLabel.text = [NSString stringWithFormat:@"%d", self.aiScore];
+}
+
 @end

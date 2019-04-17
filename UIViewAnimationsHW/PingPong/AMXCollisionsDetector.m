@@ -42,7 +42,16 @@
     return (ballX + ballRadius > screenWidth || ballX - ballRadius < 0) ? YES : NO;
 }
 
-+ (BOOL)doHorizontalWallAndBallHaveCollision:(AMXBall *)ball
++ (BOOL)detectScoreToUpperGoal:(AMXBall *)ball
+{
+    CGFloat ballY = ball.center.y + ball.velocityY * dt;
+    CGFloat ballRadius = ball.bounds.size.width / 2;
+    
+    return ballY - ballRadius < 0 ? YES : NO;
+
+}
+
++ (BOOL)detectScoreToLowerGoal:(AMXBall *)ball
 {
     CGFloat ballY = ball.center.y + ball.velocityY * dt;
     CGFloat ballRadius = ball.bounds.size.width / 2;

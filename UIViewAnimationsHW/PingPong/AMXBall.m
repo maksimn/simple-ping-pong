@@ -32,7 +32,7 @@
     return self;
 }
 
-- (void)move:(AMXPaddle *) gamerPaddle aiPaddle:(AMXPaddle *) aiPaddle
+- (void)move:(AMXPaddle *) gamerPaddle aiPaddle:(AMXPaddle *) aiPaddle gameScoreView:(AMXGameScoreView *) gameScoreView
 {
     if ([AMXCollisionsDetector doGamerPaddleAndBallHaveCollision:self gamerPaddle:gamerPaddle] ||
         [AMXCollisionsDetector doAiPaddleAndBallHaveCollision:self aiPaddle:aiPaddle])
@@ -40,8 +40,20 @@
         self.velocityY = -self.velocityY;
         return;
     }
-    if ([AMXCollisionsDetector doHorizontalWallAndBallHaveCollision:self])
+    
+    BOOL hasScoreToUpperGoal = [AMXCollisionsDetector detectScoreToUpperGoal:self];
+    BOOL hasScoreToLowerGoal = [AMXCollisionsDetector detectScoreToLowerGoal:self];
+    
+    if (hasScoreToLowerGoal || hasScoreToUpperGoal)
     {
+        if (hasScoreToUpperGoal)
+        {
+            [gameScoreView incrementGamerScore];
+        }
+        else
+        {
+            [gameScoreView incrementAiScore];
+        }
         self.center = CGPointMake(ballInitX, ballInitY);
         self.velocityX = -self.velocityX;
         self.velocityY = -self.velocityY;
