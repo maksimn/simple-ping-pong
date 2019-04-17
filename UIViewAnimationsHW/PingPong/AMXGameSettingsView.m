@@ -12,7 +12,7 @@
 
 
 const float aiPaddleMinVelocity = 1;
-const float aiPaddleMaxVelocity = 4;
+const float aiPaddleMaxVelocity = 8;
 
 const float ballMinVelocity = 5;
 const float ballMaxVelocity = 20;

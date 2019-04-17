@@ -12,6 +12,7 @@
 #import "AMXValues.h"
 #import "AMXGameSettingsView.h"
 #import "AMXTranstions.h"
+#import "AMXGameScoreView.h"
 
 
 @interface AMXGameTable ()
@@ -23,6 +24,7 @@
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, strong) UIButton *settingsButton;
 @property (nonatomic, strong) AMXGameSettingsView *gameSettingsView;
+@property (nonatomic, strong) AMXGameScoreView *gameScoreView;
 
 @property (nonatomic, assign) CGFloat screenWidth;
 @property (nonatomic, assign) CGFloat screenHeight;
@@ -53,6 +55,7 @@
     [self prepareSettingsButton];
     [self preparePaddles];
     [self prepareBall];
+    [self prepareGameScoreView];
     [self startTimer];
 }
 
@@ -119,12 +122,18 @@
     [self.view addSubview: self.settingsButton];
 }
 
+- (void)prepareGameScoreView
+{
+    self.gameScoreView = [[AMXGameScoreView alloc] init];
+    [self addSubview:self.gameScoreView];
+}
+
 - (void)showSettings
 {
     [self stopTimer];
     self.gameSettingsView = [[AMXGameSettingsView alloc] initWithBallVelocity:CGPointMake(self.ball.velocityX, self.ball.velocityY) aiPaddleVelocity:self.aiPaddle.velocity];
     __weak typeof(self) weakSelf = self;
-    self.gameSettingsView.backToGameCallback = ^(CGPoint ballVelocity, CGFloat aiPaddleVelocity){
+    self.gameSettingsView.backToGameCallback = ^(CGPoint ballVelocity, CGFloat aiPaddleVelocity) {
         weakSelf.ball.velocityX = ballVelocity.x;
         weakSelf.ball.velocityY = ballVelocity.y;
         weakSelf.aiPaddle.velocity = aiPaddleVelocity;
